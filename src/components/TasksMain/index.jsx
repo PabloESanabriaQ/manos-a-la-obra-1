@@ -1,13 +1,16 @@
 
 import TaskList from '../TaskList'
 import Form from '../Form'
-import { tasks } from '../../data/tasks'
+import { useState } from 'react'
 
 export default function TasksMain(){
+
+  const [tasks, setTasks] = useState([]);
+
   return (
     <main>
-      <Form />
-      <TaskList tasks={tasks} />
+      <Form tasks={tasks} setTasks={setTasks}/>
+      <TaskList tasks={tasks} setTasks={setTasks} />
     </main>  
   )
 }
