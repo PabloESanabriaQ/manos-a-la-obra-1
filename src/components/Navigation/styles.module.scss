@@ -1,0 +1,64 @@
+.hideNav {
+  display: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.showNav {
+  background-color: rgba(220, 235, 235, 0.9);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;  
+  
+  .a {
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #385752;
+
+    &:hover {
+      text-decoration: underline 3px solid #f9bc60;
+    }
+  }
+  
+}
+
+.hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 101;
+    
+    .bar {
+      width: 30px;
+      height: 3px;
+      background-color: #385752;
+      margin: 4px 0;
+      transition: 0.4s;
+      transform-origin: center;
+
+      &.open:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      &.open:nth-child(2) {
+        opacity: 0;
+      }
+
+      &.open:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+    }
+  }

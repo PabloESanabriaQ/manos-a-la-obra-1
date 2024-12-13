@@ -2,10 +2,10 @@ import { listItem, check, checked, completed, text } from './styles.module.scss'
 
 export default function TaskItem({ task, tasks, setTasks }){
 
-  const { id, titulo, terminada } = task;
+  const { _id, name, done } = task;
 
-  function handleFinished(id){
-    const taskList = tasks.map((task) => task.id === id ? {...task, terminada: !terminada} : task);
+  function handleFinished(_id){
+    const taskList = tasks.map((task) => task._id === _id ? {...task, done: !done} : task);
     return setTasks(taskList);
   }
 
@@ -13,9 +13,9 @@ export default function TaskItem({ task, tasks, setTasks }){
     <li className={listItem}>
       <input 
       type='checkbox' 
-      onClick={() => handleFinished(id)} 
-      className={`${check} ${terminada ? checked : ''}`}/>
-      <p className={`${text} ${terminada ? completed : ''}`}>{titulo}</p>
+      onClick={() => handleFinished(_id)} 
+      className={`${check} ${done ? checked : ''}`}/>
+      <p className={`${text} ${done ? completed : ''}`}>{name}</p>
     </li>
   )
 }

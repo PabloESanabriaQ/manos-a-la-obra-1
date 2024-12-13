@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: aliceblue
+}
+.h1 {
+  text-align: center;
+
+  .span {
+    text-decoration: underline #f9bc60 solid 4px;
+
+    &:hover {
+      text-decoration: underline #f9bc60 solid 5px;
+      transition: text-decoration-width 0.8s ease-in-out;
+    }
+  }
+}
