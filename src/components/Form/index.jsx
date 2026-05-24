@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { form } from "./styles.module.scss";
 import InputText from "../InputText";
@@ -13,3 +14,8 @@ export default function Form({ tasks, setTasks }) {
     </form>
   );
 }
+
+Form.propTypes = {
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+};

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -25,3 +26,13 @@ export default function ListItemComponent({ item, path }) {
     </li>
   );
 }
+
+ListItemComponent.propTypes = {
+  item: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    icon: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }).isRequired,
+  path: PropTypes.string.isRequired,
+};

@@ -1,8 +1,14 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import login from "../../services/login";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import ErrorToast from "../../components/ErrorToast";
+
+LoginView.propTypes = {
+  user: PropTypes.string.isRequired,
+  setUser: PropTypes.func.isRequired,
+};
 
 export default function LoginView({ user, setUser }) {
   const [password, setPassword] = useState("");

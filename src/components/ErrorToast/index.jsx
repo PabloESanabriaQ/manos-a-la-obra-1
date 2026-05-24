@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
 export default function ErrorToast({ toast, error }) {
@@ -7,3 +8,8 @@ export default function ErrorToast({ toast, error }) {
     </div>
   );
 }
+
+ErrorToast.propTypes = {
+  toast: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+};

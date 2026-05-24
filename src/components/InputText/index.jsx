@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { addTaskInput } from "./styles.module.scss";
 
 export default function InputText({ text, setText }) {
@@ -16,3 +17,8 @@ export default function InputText({ text, setText }) {
     />
   );
 }
+
+InputText.propTypes = {
+  text: PropTypes.string.isRequired,
+  setText: PropTypes.func.isRequired,
+};

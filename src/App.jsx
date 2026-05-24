@@ -13,7 +13,7 @@ function App() {
     if (token && !user) {
       setUser(JSON.parse(localStorage.getItem("user")));
     }
-  }, [user]);
+  }, [user, token]);
 
   if (loggingOut) {
     return (

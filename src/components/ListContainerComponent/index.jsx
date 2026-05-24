@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import EmptyListComponent from "../EmptyListComponent";
 import ListComponent from "../ListComponent";
 import TitleComponent from "../TitleComponent";
@@ -15,3 +16,13 @@ export default function ListContainerComponent({ title, data, path }) {
     </section>
   );
 }
+
+ListContainerComponent.propTypes = {
+  title: PropTypes.string.isRequired,
+  data: PropTypes.array,
+  path: PropTypes.string.isRequired,
+};
+
+ListContainerComponent.defaultProps = {
+  data: null,
+};

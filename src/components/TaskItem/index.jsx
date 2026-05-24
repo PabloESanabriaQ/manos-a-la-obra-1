@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { listItem, check, checked, completed, text } from "./styles.module.scss";
 
 export default function TaskItem({ task, tasks, setTasks }) {
@@ -19,3 +20,13 @@ export default function TaskItem({ task, tasks, setTasks }) {
     </li>
   );
 }
+
+TaskItem.propTypes = {
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+  }).isRequired,
+  tasks: PropTypes.array.isRequired,
+  setTasks: PropTypes.func.isRequired,
+};

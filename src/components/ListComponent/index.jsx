@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import ListItemComponent from "../ListItemComponent";
 import styles from "./styles.module.scss";
 
@@ -10,3 +11,8 @@ export default function ListComponent({ data, path }) {
     </ul>
   );
 }
+
+ListComponent.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string.isRequired })).isRequired,
+  path: PropTypes.string.isRequired,
+};

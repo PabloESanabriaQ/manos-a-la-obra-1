@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import logout from "../../services/logout";
 import { useState } from "react";
@@ -58,3 +59,8 @@ export default function Navigation({ setLoggingOut, setUser }) {
     </>
   );
 }
+
+Navigation.propTypes = {
+  setLoggingOut: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+};
