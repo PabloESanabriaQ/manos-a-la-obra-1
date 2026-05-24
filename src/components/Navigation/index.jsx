@@ -19,7 +19,7 @@ export default function Navigation({ setLoggingOut, setUser }) {
     setLoggingOut(true);
     setHidden(true);
     setTimeout(() => {
-      setUser("");
+      setUser(null);
       setLoggingOut(false);
     }, 3000);
   }

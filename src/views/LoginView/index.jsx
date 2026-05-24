@@ -5,12 +5,8 @@ import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import ErrorToast from "../../components/ErrorToast";
 
-LoginView.propTypes = {
-  user: PropTypes.string.isRequired,
-  setUser: PropTypes.func.isRequired,
-};
-
-export default function LoginView({ user, setUser }) {
+export default function LoginView({ setUser }) {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,49 +15,28 @@ export default function LoginView({ user, setUser }) {
 
   useEffect(() => {
     if (error) {
-      const timeout = setTimeout(() => {
-        setError("");
-      }, 3000);
+      const timeout = setTimeout(() => setError(""), 3000);
       return () => clearTimeout(timeout);
     }
   }, [error]);
 
-  function handleUser(e) {
-    setUser(e.target.value);
-  }
-
-  function handlePassword(e) {
-    setPassword(e.target.value);
-  }
-
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    if (!user || !password) {
+    if (!username || !password) {
       setError("Please fill out the user and password fields");
       return;
     }
     setLoading(true);
-    login(user, password)
-      .then((response) => {
-        if (response.success) {
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          setUser(response.data.user);
-          navigate("/");
-        } else {
-          setUser("");
-          setPassword("");
-          setError("User or password incorrect, please try again");
-        }
-      })
-      .catch((error) => {
-        setError("There was an error, please try again soon...");
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const result = await login(username, password);
+    if (result.success) {
+      setUser(result.user);
+      navigate("/");
+    } else {
+      setUsername("");
+      setPassword("");
+      setError(result.error || "User or password incorrect, please try again");
+    }
+    setLoading(false);
   }
 
   return (
@@ -75,15 +50,15 @@ export default function LoginView({ user, setUser }) {
           className={styles.input}
           type="text"
           autoFocus
-          value={user}
-          onChange={(e) => handleUser(e)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <input
           placeholder="************"
           className={styles.input}
           type="password"
           value={password}
-          onChange={(e) => handlePassword(e)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button
           className={`${loading ? styles.loading : styles.submit}`}
@@ -97,3 +72,7 @@ export default function LoginView({ user, setUser }) {
     </section>
   );
 }
+
+LoginView.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
