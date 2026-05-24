@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import LoginView from "./views/LoginView";
+import LogoutView from "./views/LogoutView";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -16,12 +17,7 @@ function App() {
   }, [user, token]);
 
   if (loggingOut) {
-    return (
-      <>
-        <h3>Muchas gracias por venir, esperamos que vuelvas pronto!</h3>
-        <h4>Volviendo a la página de inicio de sesión...</h4>
-      </>
-    );
+    return <LogoutView />;
   }
 
   if (!token) {
