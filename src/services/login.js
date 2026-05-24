@@ -14,6 +14,6 @@ export default function login(user, password) {
       return data
     })
     .catch((error) => {
-      return { success: response.success, error: response.error };
+      return { success: false, error: error.message };
     });
 };
