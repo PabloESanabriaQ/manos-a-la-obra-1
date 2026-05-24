@@ -5,7 +5,7 @@
   min-height: 100vh;
   width: 100vw;
   padding: 2rem 0 4rem;
-  background-color: aliceblue;
+  background-color: var(--color-bg);
 }
 
 .h1 {
@@ -13,10 +13,10 @@
   margin-bottom: 2rem;
 
   .span {
-    text-decoration: underline #f9bc60 solid 4px;
+    text-decoration: underline var(--color-accent) solid 4px;
 
     &:hover {
-      text-decoration: underline #f9bc60 solid 5px;
+      text-decoration: underline var(--color-accent) solid 5px;
       transition: text-decoration-width 0.8s ease-in-out;
     }
   }
@@ -37,8 +37,8 @@
   height: 100vh;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #385752;
-  background-color: aliceblue;
+  color: var(--color-primary);
+  background-color: var(--color-bg);
 }
 
 .error {
@@ -48,8 +48,8 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #f8d7da;
-  color: #b8454d;
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
   font-size: 1.5rem;
   font-weight: 500;
   text-align: center;

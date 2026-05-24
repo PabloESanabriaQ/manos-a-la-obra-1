@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Router";
 import "./i18n";
+import "./theme";
+import "./styles/theme.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

@@ -6,7 +6,7 @@
 }
 
 .showNav {
-  background-color: rgba(220, 235, 235, 0.9);
+  background-color: var(--color-nav-overlay);
   z-index: 100;
   position: fixed;
   top: 0;
@@ -25,22 +25,11 @@
     text-decoration: none;
     font-size: 2rem;
     font-weight: 500;
-    color: #385752;
+    color: var(--color-primary);
     cursor: pointer;
 
     &:hover {
-      text-decoration: underline 3px solid #f9bc60;
-    }
-  }
-
-  .language {
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    opacity: 0.6;
-
-    &:hover {
-      opacity: 1;
-      text-decoration: underline 2px solid #f9bc60;
+      text-decoration: underline 3px solid var(--color-accent);
     }
   }
 }
@@ -57,7 +46,7 @@
   .bar {
     width: 30px;
     height: 3px;
-    background-color: #385752;
+    background-color: var(--color-primary);
     margin: 4px 0;
     transition: 0.4s;
     transform-origin: center;

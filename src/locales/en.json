@@ -24,6 +24,14 @@
     "title": "Error 404 - Page not Found",
     "redirecting": "Redirecting to the main page..."
   },
+  "settings": {
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "language": "Language",
+    "spanish": "Spanish",
+    "english": "English"
+  },
   "common": {
     "loading": "Loading...",
     "emptyList": "Nothing to see here... Add an item to start!",

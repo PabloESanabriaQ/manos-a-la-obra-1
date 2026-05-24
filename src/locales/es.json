@@ -2,33 +2,41 @@
   "nav": {
     "home": "Inicio",
     "myStories": "Mis Historias",
-    "settings": "Configuración",
+    "settings": "Configuracion",
     "myProjects": "Mis Proyectos",
-    "logOut": "Cerrar Sesión"
+    "logOut": "Cerrar Sesion"
   },
   "login": {
     "welcome": "Bienvenido",
     "usernamePlaceholder": "usuario",
     "submit": "Entrar",
-    "errorEmpty": "Por favor completá los campos de usuario y contraseña",
-    "errorInvalid": "Usuario o contraseña incorrectos, por favor intentá de nuevo"
+    "errorEmpty": "Por favor completa los campos de usuario y contrasena",
+    "errorInvalid": "Usuario o contrasena incorrectos, por favor intenta de nuevo"
   },
   "logout": {
     "title": "Muchas gracias por venir",
-    "subtitle": "Volviendo a la página de inicio de sesión..."
+    "subtitle": "Volviendo a la pagina de inicio de sesion..."
   },
   "home": {
-    "welcome": "Bienvenido {{name}}! Es un placer tenerte aquí!"
+    "welcome": "Bienvenido {{name}}! Es un placer tenerte aqui!"
   },
   "error": {
-    "title": "Error 404 - Página no encontrada",
-    "redirecting": "Redirigiendo a la página principal..."
+    "title": "Error 404 - Pagina no encontrada",
+    "redirecting": "Redirigiendo a la pagina principal..."
+  },
+  "settings": {
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "language": "Idioma",
+    "spanish": "Espanol",
+    "english": "Ingles"
   },
   "common": {
     "loading": "Cargando...",
-    "emptyList": "Nada que ver aquí... Agregá un elemento para comenzar!",
+    "emptyList": "Nada que ver aqui... Agrega un elemento para comenzar!",
     "projects": "Proyectos",
-    "epics": "Épicas",
+    "epics": "Epicas",
     "userStories": "Historias de Usuario",
     "tasks": "Tareas",
     "myStories": "Mis Historias",

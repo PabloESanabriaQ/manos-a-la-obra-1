@@ -14,7 +14,7 @@ const NAV_LINKS = [
 
 export default function Navigation({ setLoggingOut, setUser }) {
   const [hidden, setHidden] = useState(true);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   function handleLogout() {
     logout();
@@ -24,12 +24,6 @@ export default function Navigation({ setLoggingOut, setUser }) {
       setUser(null);
       setLoggingOut(false);
     }, 3000);
-  }
-
-  function toggleLanguage() {
-    const next = i18n.language === "es" ? "en" : "es";
-    i18n.changeLanguage(next);
-    localStorage.setItem("language", next);
   }
 
   return (
@@ -55,11 +49,6 @@ export default function Navigation({ setLoggingOut, setUser }) {
             <Link className={`${styles.a} ${styles.logout}`} to={""}>
               {t("nav.logOut")}
             </Link>
-          </li>
-          <li className={styles.listItem} onClick={toggleLanguage}>
-            <span className={`${styles.a} ${styles.language}`}>
-              {i18n.language === "es" ? "EN" : "ES"}
-            </span>
           </li>
         </ul>
       </nav>
