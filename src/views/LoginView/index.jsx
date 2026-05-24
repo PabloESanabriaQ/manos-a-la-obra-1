@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import login from "../../services/login";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ export default function LoginView({ setUser }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ export default function LoginView({ setUser }) {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!username || !password) {
-      setError("Please fill out the user and password fields");
+      setError(t("login.errorEmpty"));
       return;
     }
     setLoading(true);
@@ -34,7 +36,7 @@ export default function LoginView({ setUser }) {
     } else {
       setUsername("");
       setPassword("");
-      setError(result.error || "User or password incorrect, please try again");
+      setError(result.error || t("login.errorInvalid"));
     }
     setLoading(false);
   }
@@ -43,10 +45,11 @@ export default function LoginView({ setUser }) {
     <section className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.h1}>
-          Welcome<span className={styles.span}>.</span>
+          {t("login.welcome")}
+          <span className={styles.span}>.</span>
         </h1>
         <input
-          placeholder="username"
+          placeholder={t("login.usernamePlaceholder")}
           className={styles.input}
           type="text"
           autoFocus
@@ -65,7 +68,7 @@ export default function LoginView({ setUser }) {
           type="submit"
           disabled={loading}
         >
-          {loading ? "..." : "Submit"}
+          {loading ? "..." : t("login.submit")}
         </button>
       </form>
       {error && <ErrorToast toast={styles.toast} error={error} />}

@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Home",
+    "myStories": "My Stories",
+    "settings": "Settings",
+    "myProjects": "My Projects",
+    "logOut": "Log Out"
+  },
+  "login": {
+    "welcome": "Welcome",
+    "usernamePlaceholder": "username",
+    "submit": "Submit",
+    "errorEmpty": "Please fill out the user and password fields",
+    "errorInvalid": "User or password incorrect, please try again"
+  },
+  "logout": {
+    "title": "Thank you for visiting",
+    "subtitle": "Returning to the login page..."
+  },
+  "home": {
+    "welcome": "Welcome {{name}}! It's a pleasure to have you here!"
+  },
+  "error": {
+    "title": "Error 404 - Page not Found",
+    "redirecting": "Redirecting to the main page..."
+  },
+  "common": {
+    "loading": "Loading...",
+    "emptyList": "Nothing to see here... Add an item to start!",
+    "projects": "Projects",
+    "epics": "Epics",
+    "userStories": "User Stories",
+    "tasks": "Tasks",
+    "myStories": "My Stories",
+    "task": "Task",
+    "add": "ADD",
+    "language": "Language"
+  }
+}

@@ -1,12 +1,16 @@
+import { useTranslation } from "react-i18next";
 import styles from "./styles.module.scss";
 
 export default function LogoutView() {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>
-        Muchas gracias por venir<span className={styles.accent}>.</span>
+        {t("logout.title")}
+        <span className={styles.accent}>.</span>
       </h2>
-      <p className={styles.subtitle}>Volviendo a la página de inicio de sesión...</p>
+      <p className={styles.subtitle}>{t("logout.subtitle")}</p>
     </section>
   );
 }

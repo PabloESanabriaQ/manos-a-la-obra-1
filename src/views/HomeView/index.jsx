@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import useAllProjects from "../../services/getAllProjects";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import PaginationComponent from "../../components/PaginationComponent";
@@ -10,8 +11,9 @@ export default function HomeView() {
   const user = JSON.parse(localStorage.getItem("user"));
   const { data, loading, error } = useAllProjects();
   const [page, setPage] = useState(1);
+  const { t } = useTranslation();
 
-  if (loading) return <div className={styles.loading}>Loading...</div>;
+  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
   const sorted = [...data].sort((a, b) => {
@@ -27,11 +29,10 @@ export default function HomeView() {
   return (
     <section className={styles.main}>
       <h1 className={styles.h1}>
-        <span className={styles.span}>Welcome {user?.name?.first}</span>! It&apos;s a pleasure to
-        have you here!
+        <span className={styles.span}>{t("home.welcome", { name: user?.name?.first })}</span>
       </h1>
       <div className={styles.listWrapper}>
-        <ListContainerComponent data={pageData} title="Projects" path="project" />
+        <ListContainerComponent data={pageData} title={t("common.projects")} path="project" />
         {totalPages > 1 && (
           <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
         )}

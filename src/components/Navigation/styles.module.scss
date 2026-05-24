@@ -26,9 +26,21 @@
     font-size: 2rem;
     font-weight: 500;
     color: #385752;
+    cursor: pointer;
 
     &:hover {
       text-decoration: underline 3px solid #f9bc60;
+    }
+  }
+
+  .language {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+      text-decoration: underline 2px solid #f9bc60;
     }
   }
 }
