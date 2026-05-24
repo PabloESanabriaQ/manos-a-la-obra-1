@@ -30,7 +30,15 @@
     "dark": "Dark",
     "language": "Language",
     "spanish": "Spanish",
-    "english": "English"
+    "english": "English",
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "save": "Save",
+    "passwordSuccess": "Password updated successfully",
+    "passwordMismatch": "Passwords do not match",
+    "passwordEmpty": "Please fill out all fields"
   },
   "common": {
     "loading": "Loading...",

@@ -30,7 +30,15 @@
     "dark": "Oscuro",
     "language": "Idioma",
     "spanish": "Espanol",
-    "english": "Ingles"
+    "english": "Ingles",
+    "changePassword": "Cambiar contrasena",
+    "currentPassword": "Contrasena actual",
+    "newPassword": "Nueva contrasena",
+    "confirmPassword": "Confirmar contrasena",
+    "save": "Guardar",
+    "passwordSuccess": "Contrasena actualizada correctamente",
+    "passwordMismatch": "Las contrasenas no coinciden",
+    "passwordEmpty": "Completa todos los campos"
   },
   "common": {
     "loading": "Cargando...",
