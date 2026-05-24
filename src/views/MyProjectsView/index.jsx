@@ -3,17 +3,14 @@ import useAllProjects from "../../services/getAllProjects";
 import styles from "./styles.module.scss";
 
 export default function MyProjectsView() {
-  const response = useAllProjects();
+  const { data, loading, error } = useAllProjects();
 
-  if (!response) {
-    return <>Loading...</>;
-  }
-
-  const projects = response.data;
+  if (loading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
 
   return (
     <div className={styles.container}>
-      <ListContainerComponent data={projects} title="Projects" path="project" />
+      <ListContainerComponent data={data} title="Projects" path="project" />
     </div>
   );
 }

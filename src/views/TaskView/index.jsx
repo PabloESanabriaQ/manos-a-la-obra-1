@@ -5,14 +5,14 @@ import styles from "./styles.module.scss";
 
 export default function TaskView() {
   const { idTarea } = useParams();
+  const { data, loading, error } = useTaskById(idTarea);
 
-  const response = useTaskById(idTarea);
-
-  if (!response) return <div className={styles.loading}>Loading...</div>;
+  if (loading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
 
   return (
     <div className={styles.container}>
-      <ListContainerComponent data={response.data} title="Task" path="task" />
+      <ListContainerComponent data={data} title="Task" path="task" />
     </div>
   );
 }
