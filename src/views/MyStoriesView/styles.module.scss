@@ -1,32 +1,9 @@
-.main {
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
   width: 100vw;
-  padding: 2rem 0 4rem;
+  height: 100vh;
+  justify-content: center;
   background-color: aliceblue;
-}
-
-.h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-
-  .span {
-    text-decoration: underline #f9bc60 solid 4px;
-
-    &:hover {
-      text-decoration: underline #f9bc60 solid 5px;
-      transition: text-decoration-width 0.8s ease-in-out;
-    }
-  }
-}
-
-.listWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
 
 .loading {
