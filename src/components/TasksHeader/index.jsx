@@ -1,5 +1,9 @@
-import { title } from './styles.module.scss'
+import { title } from "./styles.module.scss";
 
-export default function TasksHeader(){
-  return <header><h1 id={title}>Lista de Tareas de Pablo</h1></header>;
+export default function TasksHeader() {
+  return (
+    <header>
+      <h1 id={title}>Lista de Tareas de Pablo</h1>
+    </header>
+  );
 }

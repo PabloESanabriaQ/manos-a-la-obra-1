@@ -5,5 +5,5 @@ export default function ErrorToast({ toast, error }) {
     <div className={`${styles.error} ${toast}`}>
       <p className={styles.p}>{error}</p>
     </div>
-  )
+  );
 }

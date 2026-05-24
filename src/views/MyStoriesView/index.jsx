@@ -1,3 +1,3 @@
-export default function MyStoriesView(){
-  return <>my stories</>
+export default function MyStoriesView() {
+  return <>my stories</>;
 }

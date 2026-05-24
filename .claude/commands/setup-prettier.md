@@ -5,6 +5,7 @@ Set up Prettier in this project and integrate it with the existing ESLint config
 ### 1. Install dependencies
 
 Run:
+
 ```
 npm install --save-dev prettier eslint-config-prettier
 ```
@@ -15,6 +16,7 @@ npm install --save-dev prettier eslint-config-prettier
 ### 2. Create `.prettierrc`
 
 Create the file `.prettierrc` at the project root:
+
 ```json
 {
   "semi": true,
@@ -28,6 +30,7 @@ Create the file `.prettierrc` at the project root:
 ### 3. Create `.prettierignore`
 
 Create `.prettierignore` at the project root:
+
 ```
 dist/
 node_modules/
@@ -47,6 +50,7 @@ And append `prettierConfig` as the last element of the exported array.
 ### 5. Add npm scripts to `package.json`
 
 Add these two scripts alongside the existing ones:
+
 ```json
 "format": "prettier --write .",
 "format:check": "prettier --check ."
@@ -57,12 +61,14 @@ Add these two scripts alongside the existing ones:
 Ask the user: "¿Querés también configurar husky para correr el linter y formatter automáticamente antes de cada commit?"
 
 If yes:
+
 ```
 npm install --save-dev husky lint-staged
 npx husky init
 ```
 
 Then update `package.json` to add:
+
 ```json
 "lint-staged": {
   "*.{js,jsx}": ["eslint --fix", "prettier --write"],
@@ -71,6 +77,7 @@ Then update `package.json` to add:
 ```
 
 And set the pre-commit hook (`.husky/pre-commit`) to:
+
 ```
 npx lint-staged
 ```
@@ -78,6 +85,7 @@ npx lint-staged
 ### 7. Format existing files
 
 After setup, run:
+
 ```
 npm run format
 ```
@@ -87,6 +95,7 @@ to apply Prettier to the existing codebase.
 ### 8. Report to the user
 
 Tell the user:
+
 - What was installed and configured.
 - The new scripts available (`npm run format`, `npm run format:check`).
 - Whether husky was set up.

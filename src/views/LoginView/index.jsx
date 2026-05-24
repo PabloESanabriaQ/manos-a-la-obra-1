@@ -4,16 +4,15 @@ import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import ErrorToast from "../../components/ErrorToast";
 
-export default function LoginView({ user, setUser }){
-
+export default function LoginView({ user, setUser }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(error){
+    if (error) {
       const timeout = setTimeout(() => {
         setError("");
       }, 3000);
@@ -21,19 +20,18 @@ export default function LoginView({ user, setUser }){
     }
   }, [error]);
 
-  function handleUser(e){
+  function handleUser(e) {
     setUser(e.target.value);
   }
-    
 
-  function handlePassword(e){
+  function handlePassword(e) {
     setPassword(e.target.value);
-  }    
+  }
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
 
-    if(!user || !password){
+    if (!user || !password) {
       setError("Please fill out the user and password fields");
       return;
     }
@@ -63,14 +61,33 @@ export default function LoginView({ user, setUser }){
   return (
     <section className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1 className={styles.h1}>Welcome<span className={styles.span}>.</span></h1>
-        <input placeholder="username" className={styles.input} type="text" autoFocus value={user} onChange={(e) => handleUser(e)}/>
-        <input placeholder="************" className={styles.input} type="password" value={password}  onChange={(e) => handlePassword(e)} />
-        <button className={`${loading ? styles.loading: styles.submit}`} type="submit" disabled={loading}>
+        <h1 className={styles.h1}>
+          Welcome<span className={styles.span}>.</span>
+        </h1>
+        <input
+          placeholder="username"
+          className={styles.input}
+          type="text"
+          autoFocus
+          value={user}
+          onChange={(e) => handleUser(e)}
+        />
+        <input
+          placeholder="************"
+          className={styles.input}
+          type="password"
+          value={password}
+          onChange={(e) => handlePassword(e)}
+        />
+        <button
+          className={`${loading ? styles.loading : styles.submit}`}
+          type="submit"
+          disabled={loading}
+        >
           {loading ? "..." : "Submit"}
         </button>
       </form>
       {error && <ErrorToast toast={styles.toast} error={error} />}
     </section>
-  )
+  );
 }

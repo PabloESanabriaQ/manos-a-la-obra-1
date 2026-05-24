@@ -1,3 +1,3 @@
-export default function SettingsView(){
-  return <>settings</>
+export default function SettingsView() {
+  return <>settings</>;
 }

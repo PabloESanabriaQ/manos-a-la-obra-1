@@ -1,11 +1,11 @@
-import TasksHeader from '../../components/TasksHeader'
-import TasksMain from '../../components/TasksMain'
+import TasksHeader from "../../components/TasksHeader";
+import TasksMain from "../../components/TasksMain";
 
-export default function TasksContainer(){
+export default function TasksContainer() {
   return (
     <>
       <TasksHeader />
       <TasksMain />
     </>
-  )
+  );
 }

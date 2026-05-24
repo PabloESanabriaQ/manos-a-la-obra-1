@@ -9,6 +9,7 @@ Component name: $ARGUMENTS
 2. Create the folder `src/components/<ComponentName>/` (or `src/views/<ComponentName>/`) with exactly two files:
 
 **`index.jsx`** — following the existing pattern in this project:
+
 ```jsx
 import styles from "./styles.module.scss";
 
@@ -22,6 +23,7 @@ export default function <ComponentName>() {
 ```
 
 **`styles.module.scss`** — start with a minimal scoped block:
+
 ```scss
 .container {
 }
@@ -33,6 +35,7 @@ export default function <ComponentName>() {
    - Any props they might want to add based on the component name.
 
 ## Rules
+
 - Use the component name exactly as provided (PascalCase).
 - Do NOT add prop-types, default exports at the bottom, or any boilerplate beyond what's shown above.
 - Do NOT add comments.
