@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import getEpicsByProjectId from "../../services/getEpicsByProjectId"
+import useEpicsByProjectId from "../../services/getEpicsByProjectId"
 import ListContainerComponent from "../../components/ListContainerComponent"
 import styles from "./styles.module.scss";
 
@@ -7,7 +7,7 @@ export default function ProjectView() {
 
   const { idProyecto } = useParams();
 
-  const response = getEpicsByProjectId(idProyecto);
+  const response = useEpicsByProjectId(idProyecto);
 
 if(!response) return <div className={styles.loading}>Loading...</div>
 

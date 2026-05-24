@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getTasksByUSId(userStoryId) {
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
+export default function useTasksByUSId(userStoryId) {
   const [tasks, setTasks] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/stories/${userStoryId}/tasks`) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setTasks(data); 
-      });
-	}, []);
+    apiFetch(`/stories/${userStoryId}/tasks`).then(setTasks);
+  }, [userStoryId]);
 
-	return tasks;
-};
+  return tasks;
+}

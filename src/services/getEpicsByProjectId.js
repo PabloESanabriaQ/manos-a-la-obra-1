@@ -1,25 +1,12 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getEpicsByProjectId(idProyecto){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
+export default function useEpicsByProjectId(idProyecto) {
   const [epics, setEpics] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/projects/${idProyecto}/epics`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth": `${localStorage.getItem("token")}`,
-      },
-    }    
-    ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setEpics(data); 
-      });
-	}, []);
+    apiFetch(`/projects/${idProyecto}/epics`).then(setEpics);
+  }, [idProyecto]);
 
-	return epics;
-};
+  return epics;
+}

@@ -1,25 +1,12 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getProjectById({ projectId }){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
+export default function useProjectById({ projectId }) {
   const [project, setProject] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/projects/${projectId}`,
-      {
-        headers: {
-          auth: `${localStorage.getItem("token")}`,
-          //Authorization: `Bearer ${localStorage.getItem("token")}`,
-        }
-      }
-    ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setProject(data); 
-      });
-	}, []);
+    apiFetch(`/projects/${projectId}`).then(setProject);
+  }, [projectId]);
 
-	return project;
-};
+  return project;
+}

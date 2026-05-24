@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import getUSByEpicId from "../../services/getUSByEpicId";
+import useUSByEpicId from "../../services/getUSByEpicId";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import styles from "./styles.module.scss";
 
@@ -8,7 +8,7 @@ export default function EpicView(){
   
   const { idEpica } = useParams();
 
-  const response = getUSByEpicId(idEpica);
+  const response = useUSByEpicId(idEpica);
 
   if(!response) return <div className={styles.loading}>Loading...</div>
   

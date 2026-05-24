@@ -1,13 +1,13 @@
 import ListContainerComponent from "../../components/ListContainerComponent";
 import { useParams } from "react-router-dom";
-import getTasksByUSId from "../../services/getTasksByUSId";
+import useTasksByUSId from "../../services/getTasksByUSId";
 import styles from "./styles.module.scss";
 
 export default function UserStoryView(){
 
   const { idHistoriaDeUsuario } = useParams();
 
-  const response = getTasksByUSId(idHistoriaDeUsuario);
+  const response = useTasksByUSId(idHistoriaDeUsuario);
 
 if(!response) return <div className={styles.loading}>Loading...</div>
   

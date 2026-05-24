@@ -1,9 +1,9 @@
 import ListContainerComponent from "../../components/ListContainerComponent";
-import getAllProjects from "../../services/getAllProjects";
+import useAllProjects from "../../services/getAllProjects";
 import styles from "./styles.module.scss";
 
 export default function MyProjectsView(){
-  const response = getAllProjects();
+  const response = useAllProjects();
 
   if(!response) {
     return (

@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getUSByEpicId(idEpica){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
+export default function useUSByEpicId(idEpica) {
   const [userStories, setUserStories] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/epics/${idEpica}/stories`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth": `${localStorage.getItem("token")}`,
-      },
-    } ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setUserStories(data); 
-      });
-	}, []);
+    apiFetch(`/epics/${idEpica}/stories`).then(setUserStories);
+  }, [idEpica]);
 
-	return userStories;
-};
+  return userStories;
+}

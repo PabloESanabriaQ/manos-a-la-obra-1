@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getAllProjects(){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-  
+export default function useAllProjects() {
   const [projects, setProjects] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/projects`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth": `${localStorage.getItem("token")}`,
-      },
-    } ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setProjects(data); 
-      });
-	}, []);
+    apiFetch("/projects").then(setProjects);
+  }, []);
 
-	return projects;
-};
+  return projects;
+}

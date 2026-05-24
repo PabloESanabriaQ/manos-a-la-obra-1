@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getAllTasks(){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-  
+export default function useAllTasks() {
   const [tasks, setTasks] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/tasks`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth": `${localStorage.getItem("token")}`,
-      },
-    } ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setTasks(data); 
-      });
-	}, []);
+    apiFetch("/tasks").then(setTasks);
+  }, []);
 
-	return tasks;
-};
+  return tasks;
+}
