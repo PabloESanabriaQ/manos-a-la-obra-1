@@ -13,15 +13,21 @@ vi.mock("react-router-dom", async () => {
   return { ...actual, useNavigate: () => mockNavigate };
 });
 
-const renderLoginView = (setUser = vi.fn()) =>
+const mockSetUser = vi.fn();
+vi.mock("../../context/UserContext", () => ({
+  useUser: () => ({ setUser: mockSetUser }),
+}));
+
+const renderLoginView = () =>
   render(
     <MemoryRouter>
-      <LoginView setUser={setUser} />
+      <LoginView />
     </MemoryRouter>
   );
 
 beforeEach(() => {
   vi.clearAllMocks();
+  localStorage.clear();
 });
 
 describe("LoginView", () => {
@@ -42,19 +48,31 @@ describe("LoginView", () => {
     expect(screen.getByText("login.errorEmpty")).toBeInTheDocument();
   });
 
-  it("calls setUser and navigates on successful login", async () => {
-    const mockUser = { _id: "1", username: "pablo" };
+  it("calls setUser and navigates to /my-projects on successful login as member", async () => {
+    const mockUser = { _id: "1", username: "pablo", role: "member" };
     login.mockResolvedValueOnce({ success: true, user: mockUser });
-    const setUser = vi.fn();
     const user = userEvent.setup();
-    renderLoginView(setUser);
+    renderLoginView();
 
     await user.type(screen.getByPlaceholderText("login.usernamePlaceholder"), "pablo");
     await user.type(screen.getByPlaceholderText("************"), "secret");
     await user.click(screen.getByRole("button", { name: "login.submit" }));
 
-    await waitFor(() => expect(setUser).toHaveBeenCalledWith(mockUser));
-    expect(mockNavigate).toHaveBeenCalledWith("/");
+    await waitFor(() => expect(mockSetUser).toHaveBeenCalledWith(mockUser));
+    expect(mockNavigate).toHaveBeenCalledWith("/my-projects");
+  });
+
+  it("navigates to /admin/users on successful login as admin_users", async () => {
+    const mockUser = { _id: "2", username: "admin", role: "admin_users" };
+    login.mockResolvedValueOnce({ success: true, user: mockUser });
+    const user = userEvent.setup();
+    renderLoginView();
+
+    await user.type(screen.getByPlaceholderText("login.usernamePlaceholder"), "admin");
+    await user.type(screen.getByPlaceholderText("************"), "secret");
+    await user.click(screen.getByRole("button", { name: "login.submit" }));
+
+    await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/admin/users"));
   });
 
   it("shows error message on failed login", async () => {
