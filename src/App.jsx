@@ -3,12 +3,10 @@ import Navigation from "./components/Navigation";
 import LoginView from "./views/LoginView";
 import LogoutView from "./views/LogoutView";
 import { useState } from "react";
+import { useUser } from "./context/UserContext";
 
 function App() {
-  const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem("user");
-    return stored ? JSON.parse(stored) : null;
-  });
+  const { user } = useUser();
   const [loggingOut, setLoggingOut] = useState(false);
 
   if (loggingOut) return <LogoutView />;
@@ -16,14 +14,14 @@ function App() {
   if (!user) {
     return (
       <main>
-        <LoginView setUser={setUser} />
+        <LoginView />
       </main>
     );
   }
 
   return (
     <main>
-      <Navigation setUser={setUser} setLoggingOut={setLoggingOut} />
+      <Navigation setLoggingOut={setLoggingOut} />
       <Outlet />
     </main>
   );

@@ -1,26 +1,19 @@
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import login from "../../services/login";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import ErrorToast from "../../components/ErrorToast";
+import { useUser } from "../../context/UserContext";
 
-export default function LoginView({ setUser }) {
+export default function LoginView() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
-
+  const { setUser } = useUser();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (error) {
-      const timeout = setTimeout(() => setError(""), 3000);
-      return () => clearTimeout(timeout);
-    }
-  }, [error]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +25,7 @@ export default function LoginView({ setUser }) {
     const result = await login(username, password);
     if (result.success) {
       setUser(result.user);
-      navigate("/");
+      navigate(result.user.role === "admin_users" ? "/admin/users" : "/my-projects");
     } else {
       setUsername("");
       setPassword("");
@@ -71,11 +64,7 @@ export default function LoginView({ setUser }) {
           {loading ? "..." : t("login.submit")}
         </button>
       </form>
-      {error && <ErrorToast toast={styles.toast} error={error} />}
+      {error && <ErrorToast message={error} onClose={() => setError("")} />}
     </section>
   );
 }
-
-LoginView.propTypes = {
-  setUser: PropTypes.func.isRequired,
-};

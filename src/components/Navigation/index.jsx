@@ -3,18 +3,28 @@ import { Link } from "react-router-dom";
 import logout from "../../services/logout";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useUser } from "../../context/UserContext";
 import styles from "./styles.module.scss";
 
-const NAV_LINKS = [
+const LINKS_DEFAULT = [
   { to: "home", labelKey: "nav.home" },
+  { to: "my-projects", labelKey: "nav.myProjects" },
   { to: "my-stories", labelKey: "nav.myStories" },
   { to: "settings", labelKey: "nav.settings" },
-  { to: "my-projects", labelKey: "nav.myProjects" },
 ];
 
-export default function Navigation({ setLoggingOut, setUser }) {
+const LINKS_ADMIN_USERS = [
+  { to: "home", labelKey: "nav.home" },
+  { to: "admin/users", labelKey: "nav.adminUsers" },
+  { to: "settings", labelKey: "nav.settings" },
+];
+
+export default function Navigation({ setLoggingOut }) {
   const [hidden, setHidden] = useState(true);
   const { t } = useTranslation();
+  const { isAdminUsers, setUser } = useUser();
+
+  const links = isAdminUsers() ? LINKS_ADMIN_USERS : LINKS_DEFAULT;
 
   function handleLogout() {
     logout();
@@ -38,7 +48,7 @@ export default function Navigation({ setLoggingOut, setUser }) {
       </div>
       <nav className={!hidden ? styles.showNav : styles.hideNav}>
         <ul className={!hidden ? styles.showNav : styles.hideNav}>
-          {NAV_LINKS.map(({ to, labelKey }) => (
+          {links.map(({ to, labelKey }) => (
             <li key={to} className={styles.listItem} onClick={() => setHidden(true)}>
               <Link className={styles.a} to={to}>
                 {t(labelKey)}
@@ -58,5 +68,4 @@ export default function Navigation({ setLoggingOut, setUser }) {
 
 Navigation.propTypes = {
   setLoggingOut: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
 };

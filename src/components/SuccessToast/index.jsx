@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
-export default function ErrorToast({ message, onClose }) {
+export default function SuccessToast({ message, onClose }) {
   useEffect(() => {
     const t = setTimeout(onClose, 4000);
     return () => clearTimeout(t);
@@ -18,7 +18,7 @@ export default function ErrorToast({ message, onClose }) {
   );
 }
 
-ErrorToast.propTypes = {
+SuccessToast.propTypes = {
   message: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
 };

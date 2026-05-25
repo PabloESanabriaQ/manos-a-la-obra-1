@@ -10,6 +10,10 @@ import ProjectView from "../views/ProjectView";
 import UserStoryView from "../views/UserStoryView";
 import LoginView from "../views/LoginView";
 import TaskView from "../views/TaskView";
+import AdminUsersView from "../views/AdminUsersView";
+import ProtectedRoute from "../components/ProtectedRoute";
+
+const PROJECT_ROLES = ["admin_projects", "member"];
 
 export const router = createBrowserRouter([
   {
@@ -17,46 +21,65 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorView />,
     children: [
+      { path: "login", element: <LoginView /> },
+      { path: "home", element: <HomeView /> },
+      { path: "", element: <HomeView /> },
+      { path: "settings", element: <SettingsView /> },
       {
-        path: "login",
-        element: <LoginView />,
-      },
-      {
-        path: "home",
-        element: <HomeView />,
-      },
-      {
-        path: "",
-        element: <HomeView />,
-      },
-      {
-        path: "my-stories",
-        element: <MyStoriesView />,
-      },
-      {
-        path: "settings",
-        element: <SettingsView />,
+        path: "admin/users",
+        element: (
+          <ProtectedRoute allowedRoles={["admin_users"]}>
+            <AdminUsersView />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "my-projects",
-        element: <MyProjectsView />,
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <MyProjectsView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "my-stories",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <MyStoriesView />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "project/:idProyecto",
-        element: <ProjectView />,
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <ProjectView />
+          </ProtectedRoute>
+        ),
       },
-
       {
         path: "epic/:idEpica",
-        element: <EpicView />,
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <EpicView />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "userStory/:idHistoriaDeUsuario",
-        element: <UserStoryView />,
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <UserStoryView />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "task/:Tarea",
-        element: <TaskView />,
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <TaskView />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

@@ -1,9 +1,127 @@
 .container {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   background-color: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem 1rem;
+  gap: 1rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-text);
+  opacity: 0.75;
+  margin: 0.25rem 0 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background-color: var(--color-nav-overlay);
+
+  h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+}
+
+.input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+}
+
+.formActions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.btnPrimary {
+  padding: 0.5rem 1.25rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btnSecondary {
+  padding: 0.5rem 1.25rem;
+  background: none;
+  border: 1px solid var(--color-primary);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-nav-overlay);
+  }
+}
+
+.btnAdd {
+  padding: 0.6rem 1.5rem;
+  background: none;
+  border: 2px dashed var(--color-primary);
+  border-radius: 6px;
+  color: var(--color-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--color-nav-overlay);
+  }
 }
 
 .loading {
