@@ -97,8 +97,18 @@ export default function ProjectView() {
     }
   }
 
-  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
-  if (error) return <div className={styles.error}>{error}</div>;
+  if (loading)
+    return (
+      <div role="status" className={styles.loading}>
+        {t("common.loading")}
+      </div>
+    );
+  if (error)
+    return (
+      <div role="alert" className={styles.error}>
+        {error}
+      </div>
+    );
 
   return (
     <div className={styles.container}>
@@ -125,6 +135,7 @@ export default function ProjectView() {
             <input
               className={styles.input}
               placeholder={t("crud.name")}
+              aria-label={t("crud.name")}
               value={editProjectForm.name}
               onChange={(e) => setEditProjectForm({ ...editProjectForm, name: e.target.value })}
               required
@@ -132,6 +143,7 @@ export default function ProjectView() {
             <input
               className={styles.input}
               placeholder={t("crud.description")}
+              aria-label={t("crud.description")}
               value={editProjectForm.description}
               onChange={(e) =>
                 setEditProjectForm({ ...editProjectForm, description: e.target.value })
@@ -140,6 +152,7 @@ export default function ProjectView() {
             <input
               className={styles.input}
               placeholder={t("crud.icon")}
+              aria-label={t("crud.icon")}
               value={editProjectForm.icon}
               onChange={(e) => setEditProjectForm({ ...editProjectForm, icon: e.target.value })}
             />
@@ -167,6 +180,7 @@ export default function ProjectView() {
             <input
               className={styles.input}
               placeholder={t("crud.name")}
+              aria-label={t("crud.name")}
               value={editEpicForm.name}
               onChange={(e) => setEditEpicForm({ ...editEpicForm, name: e.target.value })}
               required
@@ -174,12 +188,14 @@ export default function ProjectView() {
             <input
               className={styles.input}
               placeholder={t("crud.description")}
+              aria-label={t("crud.description")}
               value={editEpicForm.description}
               onChange={(e) => setEditEpicForm({ ...editEpicForm, description: e.target.value })}
             />
             <input
               className={styles.input}
               placeholder={t("crud.icon")}
+              aria-label={t("crud.icon")}
               value={editEpicForm.icon}
               onChange={(e) => setEditEpicForm({ ...editEpicForm, icon: e.target.value })}
             />
@@ -215,6 +231,7 @@ export default function ProjectView() {
               <input
                 className={styles.input}
                 placeholder={t("crud.name")}
+                aria-label={t("crud.name")}
                 value={createForm.name}
                 onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
                 required
@@ -223,12 +240,14 @@ export default function ProjectView() {
               <input
                 className={styles.input}
                 placeholder={t("crud.description")}
+                aria-label={t("crud.description")}
                 value={createForm.description}
                 onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
               />
               <input
                 className={styles.input}
                 placeholder={t("crud.icon")}
+                aria-label={t("crud.icon")}
                 value={createForm.icon}
                 onChange={(e) => setCreateForm({ ...createForm, icon: e.target.value })}
               />

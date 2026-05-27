@@ -5,7 +5,8 @@
     "settings": "Configuracion",
     "myProjects": "Mis Proyectos",
     "adminUsers": "Administracion",
-    "logOut": "Cerrar Sesion"
+    "logOut": "Cerrar Sesion",
+    "menu": "Menu de navegacion"
   },
   "admin": {
     "title": "Administracion de usuarios",

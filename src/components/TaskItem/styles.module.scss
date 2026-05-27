@@ -18,6 +18,10 @@
 
 .checked {
   background: url("../../assets/checkbox.svg") no-repeat center;
+
+  :global([data-theme="dark"]) & {
+    filter: invert(1);
+  }
 }
 
 .completed {
@@ -25,7 +29,8 @@
 }
 
 .text {
-  width: 400px;
+  flex: 1;
+  min-width: 0;
   text-align: left;
   font-size: 24px;
 }

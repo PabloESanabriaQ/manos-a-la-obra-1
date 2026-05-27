@@ -1,7 +1,12 @@
 .addTaskInput {
   appearance: none;
-  width: 376px;
+  width: 100%;
+  max-width: 376px;
   height: 54px;
   font-size: 24px;
   border: 2px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  padding: 0 10px;
 }

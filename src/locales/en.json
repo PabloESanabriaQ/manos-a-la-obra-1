@@ -5,7 +5,8 @@
     "settings": "Settings",
     "myProjects": "My Projects",
     "adminUsers": "Administration",
-    "logOut": "Log Out"
+    "logOut": "Log Out",
+    "menu": "Navigation menu"
   },
   "admin": {
     "title": "User administration",

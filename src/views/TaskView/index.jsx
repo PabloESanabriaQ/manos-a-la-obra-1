@@ -52,8 +52,18 @@ export default function TaskView() {
     }
   }
 
-  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
-  if (error) return <div className={styles.error}>{error}</div>;
+  if (loading)
+    return (
+      <div role="status" className={styles.loading}>
+        {t("common.loading")}
+      </div>
+    );
+  if (error)
+    return (
+      <div role="alert" className={styles.error}>
+        {error}
+      </div>
+    );
 
   return (
     <div className={styles.container}>
@@ -94,6 +104,7 @@ export default function TaskView() {
             <input
               className={styles.input}
               placeholder={t("crud.name")}
+              aria-label={t("crud.name")}
               value={editForm.name}
               onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
               required
@@ -102,6 +113,7 @@ export default function TaskView() {
             <input
               className={styles.input}
               placeholder={t("crud.description")}
+              aria-label={t("crud.description")}
               value={editForm.description}
               onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
             />

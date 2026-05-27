@@ -84,6 +84,7 @@ export default function SettingsView() {
               className={styles.input}
               type="password"
               placeholder={t("settings.currentPassword")}
+              aria-label={t("settings.currentPassword")}
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
             />
@@ -91,6 +92,7 @@ export default function SettingsView() {
               className={styles.input}
               type="password"
               placeholder={t("settings.newPassword")}
+              aria-label={t("settings.newPassword")}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -98,6 +100,7 @@ export default function SettingsView() {
               className={styles.input}
               type="password"
               placeholder={t("settings.confirmPassword")}
+              aria-label={t("settings.confirmPassword")}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />

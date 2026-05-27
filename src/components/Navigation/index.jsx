@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import logout from "../../services/logout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useUser } from "../../context/UserContext";
 import styles from "./styles.module.scss";
@@ -26,6 +26,14 @@ export default function Navigation({ setLoggingOut }) {
 
   const links = isAdminUsers() ? LINKS_ADMIN_USERS : LINKS_DEFAULT;
 
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "Escape" && !hidden) setHidden(true);
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [hidden]);
+
   function handleLogout() {
     logout();
     setLoggingOut(true);
@@ -38,15 +46,18 @@ export default function Navigation({ setLoggingOut }) {
 
   return (
     <>
-      <div
+      <button
         className={`${styles.hamburger} ${!hidden ? styles.active : ""}`}
         onClick={() => setHidden(!hidden)}
+        aria-expanded={!hidden}
+        aria-controls="main-nav"
+        aria-label={t("nav.menu")}
       >
         <span className={`${styles.bar} ${!hidden ? styles.open : ""}`}></span>
         <span className={`${styles.bar} ${!hidden ? styles.open : ""}`}></span>
         <span className={`${styles.bar} ${!hidden ? styles.open : ""}`}></span>
-      </div>
-      <nav className={!hidden ? styles.showNav : styles.hideNav}>
+      </button>
+      <nav id="main-nav" aria-hidden={hidden} className={!hidden ? styles.showNav : styles.hideNav}>
         <ul className={!hidden ? styles.showNav : styles.hideNav}>
           {links.map(({ to, labelKey }) => (
             <li key={to} className={styles.listItem} onClick={() => setHidden(true)}>

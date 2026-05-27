@@ -177,6 +177,7 @@ export default function AdminUsersView() {
               <input
                 className={styles.input}
                 placeholder={t("admin.username")}
+                aria-label={t("admin.username")}
                 value={createForm.username}
                 onChange={(e) => setCreateForm({ ...createForm, username: e.target.value })}
                 required
@@ -184,6 +185,7 @@ export default function AdminUsersView() {
               <input
                 className={styles.input}
                 placeholder={t("admin.email")}
+                aria-label={t("admin.email")}
                 type="email"
                 value={createForm.email}
                 onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
@@ -192,6 +194,7 @@ export default function AdminUsersView() {
               <input
                 className={styles.input}
                 placeholder={t("admin.password")}
+                aria-label={t("admin.password")}
                 type="password"
                 value={createForm.password}
                 onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })}
@@ -231,6 +234,7 @@ export default function AdminUsersView() {
               <input
                 className={styles.input}
                 placeholder={t("admin.username")}
+                aria-label={t("admin.username")}
                 value={editForm.username}
                 onChange={(e) => setEditForm({ ...editForm, username: e.target.value })}
                 required
@@ -238,6 +242,7 @@ export default function AdminUsersView() {
               <input
                 className={styles.input}
                 placeholder={t("admin.email")}
+                aria-label={t("admin.email")}
                 type="email"
                 value={editForm.email}
                 onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
@@ -246,12 +251,14 @@ export default function AdminUsersView() {
               <input
                 className={styles.input}
                 placeholder={t("admin.firstName")}
+                aria-label={t("admin.firstName")}
                 value={editForm.firstName}
                 onChange={(e) => setEditForm({ ...editForm, firstName: e.target.value })}
               />
               <input
                 className={styles.input}
                 placeholder={t("admin.lastName")}
+                aria-label={t("admin.lastName")}
                 value={editForm.lastName}
                 onChange={(e) => setEditForm({ ...editForm, lastName: e.target.value })}
               />

@@ -43,6 +43,7 @@ export default function LoginView() {
         </h1>
         <input
           placeholder={t("login.usernamePlaceholder")}
+          aria-label={t("login.usernamePlaceholder")}
           className={styles.input}
           type="text"
           autoFocus
@@ -51,6 +52,7 @@ export default function LoginView() {
         />
         <input
           placeholder="************"
+          aria-label={t("admin.password")}
           className={styles.input}
           type="password"
           value={password}

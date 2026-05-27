@@ -3,8 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
   background-color: var(--color-bg);
 }
 
@@ -16,7 +17,7 @@
   border: 10px solid var(--color-brand);
   background-color: var(--color-brand);
   border-radius: 15% 0 15% 0;
-  width: 350px;
+  width: min(350px, 100%);
   min-height: 400px;
   gap: 20px;
 }
@@ -41,6 +42,12 @@
   font-weight: 800;
   font-size: medium;
   border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
 }
 
 .loading {

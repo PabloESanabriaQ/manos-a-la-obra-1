@@ -42,6 +42,10 @@
   flex-direction: column;
   cursor: pointer;
   z-index: 101;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: 4px;
 
   .bar {
     width: 30px;

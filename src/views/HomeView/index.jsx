@@ -13,8 +13,18 @@ export default function HomeView() {
   const [page, setPage] = useState(1);
   const { t } = useTranslation();
 
-  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
-  if (error) return <div className={styles.error}>{error}</div>;
+  if (loading)
+    return (
+      <div role="status" className={styles.loading}>
+        {t("common.loading")}
+      </div>
+    );
+  if (error)
+    return (
+      <div role="alert" className={styles.error}>
+        {error}
+      </div>
+    );
 
   const sorted = [...data].sort((a, b) => {
     if (!a.updatedAt && !b.updatedAt) return 0;

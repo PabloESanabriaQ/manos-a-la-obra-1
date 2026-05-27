@@ -104,8 +104,18 @@ export default function EpicView() {
     }
   }
 
-  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
-  if (error) return <div className={styles.error}>{error}</div>;
+  if (loading)
+    return (
+      <div role="status" className={styles.loading}>
+        {t("common.loading")}
+      </div>
+    );
+  if (error)
+    return (
+      <div role="alert" className={styles.error}>
+        {error}
+      </div>
+    );
 
   return (
     <div className={styles.container}>
@@ -134,6 +144,7 @@ export default function EpicView() {
             <input
               className={styles.input}
               placeholder={t("crud.name")}
+              aria-label={t("crud.name")}
               value={editEpicForm.name}
               onChange={(e) => setEditEpicForm({ ...editEpicForm, name: e.target.value })}
               required
@@ -141,12 +152,14 @@ export default function EpicView() {
             <input
               className={styles.input}
               placeholder={t("crud.description")}
+              aria-label={t("crud.description")}
               value={editEpicForm.description}
               onChange={(e) => setEditEpicForm({ ...editEpicForm, description: e.target.value })}
             />
             <input
               className={styles.input}
               placeholder={t("crud.icon")}
+              aria-label={t("crud.icon")}
               value={editEpicForm.icon}
               onChange={(e) => setEditEpicForm({ ...editEpicForm, icon: e.target.value })}
             />
@@ -174,6 +187,7 @@ export default function EpicView() {
             <input
               className={styles.input}
               placeholder={t("crud.name")}
+              aria-label={t("crud.name")}
               value={editStoryForm.name}
               onChange={(e) => setEditStoryForm({ ...editStoryForm, name: e.target.value })}
               required
@@ -181,12 +195,14 @@ export default function EpicView() {
             <input
               className={styles.input}
               placeholder={t("crud.description")}
+              aria-label={t("crud.description")}
               value={editStoryForm.description}
               onChange={(e) => setEditStoryForm({ ...editStoryForm, description: e.target.value })}
             />
             <input
               className={styles.input}
               placeholder={t("crud.points")}
+              aria-label={t("crud.points")}
               type="number"
               min="0"
               value={editStoryForm.points}
@@ -224,6 +240,7 @@ export default function EpicView() {
               <input
                 className={styles.input}
                 placeholder={t("crud.name")}
+                aria-label={t("crud.name")}
                 value={createForm.name}
                 onChange={(e) => setCreateForm({ ...createForm, name: e.target.value })}
                 required
@@ -232,12 +249,14 @@ export default function EpicView() {
               <input
                 className={styles.input}
                 placeholder={t("crud.description")}
+                aria-label={t("crud.description")}
                 value={createForm.description}
                 onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
               />
               <input
                 className={styles.input}
                 placeholder={t("crud.points")}
+                aria-label={t("crud.points")}
                 type="number"
                 min="0"
                 value={createForm.points}
