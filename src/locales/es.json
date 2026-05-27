@@ -2,21 +2,21 @@
   "nav": {
     "home": "Inicio",
     "myStories": "Mis Historias",
-    "settings": "Configuracion",
+    "settings": "Configuración",
     "myProjects": "Mis Proyectos",
-    "adminUsers": "Administracion",
-    "logOut": "Cerrar Sesion",
-    "menu": "Menu de navegacion"
+    "adminUsers": "Administración",
+    "logOut": "Cerrar Sesión",
+    "menu": "Menu de navegación"
   },
   "admin": {
-    "title": "Administracion de usuarios",
+    "title": "Administración de usuarios",
     "usersTab": "Usuarios",
     "projectsTab": "Proyectos",
     "createUser": "Crear usuario",
     "editUser": "Editar usuario",
     "username": "Usuario",
     "email": "Email",
-    "password": "Contrasena",
+    "password": "Contraseña",
     "firstName": "Nombre",
     "lastName": "Apellido",
     "role": "Rol",
@@ -48,35 +48,35 @@
     "welcome": "Bienvenido",
     "usernamePlaceholder": "usuario",
     "submit": "Entrar",
-    "errorEmpty": "Por favor completa los campos de usuario y contrasena",
-    "errorInvalid": "Usuario o contrasena incorrectos, por favor intenta de nuevo"
+    "errorEmpty": "Por favor completa los campos de usuario y contraseña",
+    "errorInvalid": "Usuario o contraseña incorrectos, por favor intenta de nuevo"
   },
   "logout": {
     "title": "Muchas gracias por venir",
-    "subtitle": "Volviendo a la pagina de inicio de sesion..."
+    "subtitle": "Volviendo a la pagina de inicio de sesión..."
   },
   "home": {
-    "welcome": "Bienvenido {{name}}! Es un placer tenerte aqui!"
+    "welcome": "Bienvenido {{name}}! Es un placer tenerte aquí!"
   },
   "error": {
-    "title": "Error 404 - Pagina no encontrada",
-    "redirecting": "Redirigiendo a la pagina principal..."
+    "title": "Error 404 - Página no encontrada",
+    "redirecting": "Redirigiendo a la página principal..."
   },
   "settings": {
     "theme": "Tema",
     "light": "Claro",
     "dark": "Oscuro",
     "language": "Idioma",
-    "spanish": "Espanol",
-    "english": "Ingles",
-    "changePassword": "Cambiar contrasena",
-    "currentPassword": "Contrasena actual",
-    "newPassword": "Nueva contrasena",
-    "confirmPassword": "Confirmar contrasena",
+    "spanish": "Español",
+    "english": "Inglés",
+    "changePassword": "Cambiar contraseña",
+    "currentPassword": "contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
     "save": "Guardar",
-    "passwordSuccess": "Contrasena actualizada correctamente",
-    "passwordMismatch": "Las contrasenas no coinciden",
-    "passwordEmpty": "Completa todos los campos"
+    "passwordSuccess": "Contraseña actualizada correctamente",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordEmpty": "Completá todos los campos"
   },
   "crud": {
     "editProject": "Editar Proyecto",
@@ -87,7 +87,7 @@
     "editTask": "Editar Tarea",
     "newTask": "Nueva Tarea",
     "name": "Nombre",
-    "description": "Descripcion",
+    "description": "Descripción",
     "icon": "Icono",
     "points": "Puntos",
     "status": "Estado",
@@ -101,9 +101,9 @@
   },
   "common": {
     "loading": "Cargando...",
-    "emptyList": "Nada que ver aqui... Agrega un elemento para comenzar!",
+    "emptyList": "Nada que ver aquí... Agrega un elemento para comenzar!",
     "projects": "Proyectos",
-    "epics": "Epicas",
+    "epics": "Épicas",
     "userStories": "Historias de Usuario",
     "tasks": "Tareas",
     "myStories": "Mis Historias",
