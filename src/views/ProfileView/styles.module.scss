@@ -1,0 +1,178 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  padding: 4rem 10vw;
+  background-color: var(--color-bg);
+
+  @media (max-width: 600px) {
+    padding: 2rem 1.25rem;
+  }
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+
+  .accent {
+    color: var(--color-accent);
+  }
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-brand);
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.02em;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-primary-faded);
+  padding-bottom: 0.75rem;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.value {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  text-align: right;
+  word-break: break-all;
+}
+
+.badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--color-primary-faded);
+  color: var(--color-primary);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.projects {
+  width: 100%;
+  max-width: 520px;
+}
+
+.sectionTitle {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-decoration: underline 2px solid var(--color-accent);
+}
+
+.projectList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.projectItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.projectName {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.projectIcon {
+  font-size: 1.1rem;
+}
+
+.roleBadge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--color-primary-faded);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--color-text);
+  opacity: 0.6;
+  font-size: 0.95rem;
+}
+
+.loading {
+  padding: 4rem 10vw;
+  color: var(--color-text);
+}
+
+.error {
+  padding: 4rem 10vw;
+  color: var(--color-error);
+}

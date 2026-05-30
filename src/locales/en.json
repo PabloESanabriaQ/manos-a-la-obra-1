@@ -5,6 +5,7 @@
     "settings": "Settings",
     "myProjects": "My Projects",
     "adminUsers": "Administration",
+    "profile": "My Profile",
     "logOut": "Log Out",
     "menu": "Navigation menu"
   },
@@ -98,6 +99,16 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirmDelete": "Delete {{name}}?"
+  },
+  "profile": {
+    "title": "My Profile",
+    "name": "First name",
+    "lastName": "Last name",
+    "username": "Username",
+    "email": "Email",
+    "role": "Role",
+    "projects": "My Projects",
+    "noProjects": "You are not part of any project"
   },
   "common": {
     "loading": "Loading...",

@@ -11,6 +11,7 @@ import UserStoryView from "../views/UserStoryView";
 import LoginView from "../views/LoginView";
 import TaskView from "../views/TaskView";
 import AdminUsersView from "../views/AdminUsersView";
+import ProfileView from "../views/ProfileView";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const PROJECT_ROLES = ["admin_projects", "member"];
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: "home", element: <HomeView /> },
       { path: "", element: <HomeView /> },
       { path: "settings", element: <SettingsView /> },
+      { path: "profile", element: <ProfileView /> },
       {
         path: "admin/users",
         element: (

@@ -5,6 +5,7 @@
     "settings": "Configuración",
     "myProjects": "Mis Proyectos",
     "adminUsers": "Administración",
+    "profile": "Mi Perfil",
     "logOut": "Cerrar Sesión",
     "menu": "Menu de navegación"
   },
@@ -98,6 +99,16 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "confirmDelete": "Eliminar {{name}}?"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "username": "Usuario",
+    "email": "Email",
+    "role": "Rol",
+    "projects": "Mis Proyectos",
+    "noProjects": "No formas parte de ningun proyecto"
   },
   "common": {
     "loading": "Cargando...",

@@ -10,12 +10,14 @@ const LINKS_DEFAULT = [
   { to: "home", labelKey: "nav.home" },
   { to: "my-projects", labelKey: "nav.myProjects" },
   { to: "my-stories", labelKey: "nav.myStories" },
+  { to: "profile", labelKey: "nav.profile" },
   { to: "settings", labelKey: "nav.settings" },
 ];
 
 const LINKS_ADMIN_USERS = [
   { to: "home", labelKey: "nav.home" },
   { to: "admin/users", labelKey: "nav.adminUsers" },
+  { to: "profile", labelKey: "nav.profile" },
   { to: "settings", labelKey: "nav.settings" },
 ];
 
