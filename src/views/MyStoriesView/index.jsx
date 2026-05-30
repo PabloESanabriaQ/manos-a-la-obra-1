@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 import useAllStories from "../../services/getAllStories";
 import ListContainerComponent from "../../components/ListContainerComponent";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
 
 export default function MyStoriesView() {
   const { data, loading, error } = useAllStories();
   const { t } = useTranslation();
 
-  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
+  if (loading) return <LoadingSpinner />;
   if (error) return <div className={styles.error}>{error}</div>;
 
   return (

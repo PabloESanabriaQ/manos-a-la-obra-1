@@ -111,7 +111,7 @@
     "noProjects": "No formas parte de ningun proyecto"
   },
   "common": {
-    "loading": "Cargando...",
+    "loading": "Pensando...",
     "emptyList": "Nada que ver aquí... Agrega un elemento para comenzar!",
     "projects": "Proyectos",
     "epics": "Épicas",

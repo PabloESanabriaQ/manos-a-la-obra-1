@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useUser } from "../../context/UserContext";
 import useMe from "../../services/getMe";
 import useAllProjects from "../../services/getAllProjects";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
 
 export default function ProfileView() {
@@ -12,7 +13,7 @@ export default function ProfileView() {
 
   const loading = profileLoading || projectsLoading;
 
-  if (loading) return <div className={styles.loading}>{t("common.loading")}</div>;
+  if (loading) return <LoadingSpinner />;
   if (profileError) return <div className={styles.error}>{profileError}</div>;
 
   const initials =

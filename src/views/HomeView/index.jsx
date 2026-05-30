@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import useAllProjects from "../../services/getAllProjects";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import PaginationComponent from "../../components/PaginationComponent";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
 
 const PAGE_SIZE = 6;
@@ -13,12 +14,7 @@ export default function HomeView() {
   const [page, setPage] = useState(1);
   const { t } = useTranslation();
 
-  if (loading)
-    return (
-      <div role="status" className={styles.loading}>
-        {t("common.loading")}
-      </div>
-    );
+  if (loading) return <LoadingSpinner />;
   if (error)
     return (
       <div role="alert" className={styles.error}>

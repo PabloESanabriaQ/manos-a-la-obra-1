@@ -10,6 +10,7 @@ import deleteTask from "../../services/deleteTask";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import ErrorToast from "../../components/ErrorToast";
 import { useUser } from "../../context/UserContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
 
 const EMPTY_TASK_FORM = { name: "", description: "" };
@@ -96,12 +97,7 @@ export default function UserStoryView() {
     }
   }
 
-  if (loading)
-    return (
-      <div role="status" className={styles.loading}>
-        {t("common.loading")}
-      </div>
-    );
+  if (loading) return <LoadingSpinner />;
   if (error)
     return (
       <div role="alert" className={styles.error}>
