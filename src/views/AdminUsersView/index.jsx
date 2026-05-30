@@ -13,7 +13,14 @@ import styles from "./styles.module.scss";
 const ROLES = ["admin_users", "admin_projects", "member"];
 const PROJECT_ROLES = ["admin_projects", "member"];
 
-const EMPTY_USER_FORM = { username: "", email: "", password: "", role: "member" };
+const EMPTY_USER_FORM = {
+  username: "",
+  email: "",
+  password: "",
+  role: "member",
+  firstName: "",
+  lastName: "",
+};
 const EMPTY_EDIT_FORM = { username: "", email: "", firstName: "", lastName: "" };
 
 export default function AdminUsersView() {
@@ -56,7 +63,10 @@ export default function AdminUsersView() {
   async function handleCreate(e) {
     e.preventDefault();
     try {
-      await createUser(createForm);
+      await createUser({
+        ...createForm,
+        name: { first: createForm.firstName, last: createForm.lastName },
+      });
       setCreateForm(EMPTY_USER_FORM);
       setShowCreateForm(false);
       setSuccess(t("admin.userCreated"));
@@ -189,6 +199,22 @@ export default function AdminUsersView() {
                 type="email"
                 value={createForm.email}
                 onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
+                required
+              />
+              <input
+                className={styles.input}
+                placeholder={t("admin.firstName")}
+                aria-label={t("admin.firstName")}
+                value={createForm.firstName}
+                onChange={(e) => setCreateForm({ ...createForm, firstName: e.target.value })}
+                required
+              />
+              <input
+                className={styles.input}
+                placeholder={t("admin.lastName")}
+                aria-label={t("admin.lastName")}
+                value={createForm.lastName}
+                onChange={(e) => setCreateForm({ ...createForm, lastName: e.target.value })}
                 required
               />
               <input
