@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useUser } from "../../context/UserContext";
 import useAllProjects from "../../services/getAllProjects";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import PaginationComponent from "../../components/PaginationComponent";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import AdminUsersPanel from "../../components/AdminUsersPanel";
 import styles from "./styles.module.scss";
 
 const PAGE_SIZE = 6;
 
-export default function HomeView() {
-  const user = JSON.parse(localStorage.getItem("user"));
+function ProjectsSection() {
   const { data, loading, error } = useAllProjects();
   const [page, setPage] = useState(1);
   const { t } = useTranslation();
@@ -33,16 +34,26 @@ export default function HomeView() {
   const pageData = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
+    <div className={styles.listWrapper}>
+      <ListContainerComponent data={pageData} title={t("common.projects")} path="project" />
+      {totalPages > 1 && (
+        <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
+      )}
+    </div>
+  );
+}
+
+export default function HomeView() {
+  const { user, isAdminUsers } = useUser();
+  const { t } = useTranslation();
+
+  return (
     <section className={styles.main}>
       <h1 className={styles.h1}>
-        <span className={styles.span}>{t("home.welcome", { name: user?.name?.first })}</span>
+        <span className={styles.span}>{t("home.greeting", { name: user?.name?.first })}</span>{" "}
+        {t("home.subtitle")}
       </h1>
-      <div className={styles.listWrapper}>
-        <ListContainerComponent data={pageData} title={t("common.projects")} path="project" />
-        {totalPages > 1 && (
-          <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
-        )}
-      </div>
+      {isAdminUsers() ? <AdminUsersPanel /> : <ProjectsSection />}
     </section>
   );
 }

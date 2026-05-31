@@ -12,7 +12,7 @@ import { useUser } from "../../context/UserContext";
 const mockUseUser = (role) =>
   vi.mocked(useUser).mockReturnValue({
     role,
-    homeRoute: () => (role === "admin_users" ? "/admin/users" : "/my-projects"),
+    homeRoute: () => "/home",
   });
 
 const renderRoute = (allowedRoles, role) => {
@@ -28,8 +28,7 @@ const renderRoute = (allowedRoles, role) => {
             </ProtectedRoute>
           }
         />
-        <Route path="/my-projects" element={<div>My Projects</div>} />
-        <Route path="/admin/users" element={<div>Admin Users</div>} />
+        <Route path="/home" element={<div>Home</div>} />
       </Routes>
     </MemoryRouter>
   );
@@ -42,18 +41,18 @@ describe("ProtectedRoute", () => {
     expect(screen.getByText("Protected Content")).toBeInTheDocument();
   });
 
-  it("redirects to /my-projects when role is not in allowedRoles", () => {
+  it("redirects to /home when role is not in allowedRoles", () => {
     renderRoute(["admin_users"], "member");
 
     expect(screen.queryByText("Protected Content")).not.toBeInTheDocument();
-    expect(screen.getByText("My Projects")).toBeInTheDocument();
+    expect(screen.getByText("Home")).toBeInTheDocument();
   });
 
-  it("redirects to /admin/users when admin_users tries to access project route", () => {
+  it("redirects to /home when admin_users tries to access project route", () => {
     renderRoute(["admin_projects", "member"], "admin_users");
 
     expect(screen.queryByText("Protected Content")).not.toBeInTheDocument();
-    expect(screen.getByText("Admin Users")).toBeInTheDocument();
+    expect(screen.getByText("Home")).toBeInTheDocument();
   });
 
   it("renders children when allowedRoles is not provided", () => {

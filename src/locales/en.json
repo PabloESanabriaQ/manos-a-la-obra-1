@@ -57,7 +57,8 @@
     "subtitle": "Returning to the login page..."
   },
   "home": {
-    "welcome": "Welcome {{name}}! It's a pleasure to have you here!"
+    "greeting": "Welcome {{name}}",
+    "subtitle": "It's a pleasure to have you here!"
   },
   "error": {
     "title": "Error 404 - Page not Found",

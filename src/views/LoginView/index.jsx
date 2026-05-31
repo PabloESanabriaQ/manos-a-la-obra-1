@@ -25,7 +25,7 @@ export default function LoginView() {
     const result = await login(username, password);
     if (result.success) {
       setUser(result.user);
-      navigate(result.user.role === "admin_users" ? "/admin/users" : "/my-projects");
+      navigate("/home");
     } else {
       setUsername("");
       setPassword("");

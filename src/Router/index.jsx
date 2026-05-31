@@ -10,7 +10,6 @@ import ProjectView from "../views/ProjectView";
 import UserStoryView from "../views/UserStoryView";
 import LoginView from "../views/LoginView";
 import TaskView from "../views/TaskView";
-import AdminUsersView from "../views/AdminUsersView";
 import ProfileView from "../views/ProfileView";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -27,14 +26,6 @@ export const router = createBrowserRouter([
       { path: "", element: <HomeView /> },
       { path: "settings", element: <SettingsView /> },
       { path: "profile", element: <ProfileView /> },
-      {
-        path: "admin/users",
-        element: (
-          <ProtectedRoute allowedRoles={["admin_users"]}>
-            <AdminUsersView />
-          </ProtectedRoute>
-        ),
-      },
       {
         path: "my-projects",
         element: (

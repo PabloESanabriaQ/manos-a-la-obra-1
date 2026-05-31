@@ -10,13 +10,15 @@ async function apiFetch(endpoint, options = {}, isRetry = false) {
     },
   });
 
-  if (response.status === 401 && !isRetry) {
-    const refreshed = await fetch(`${API_URL}/auth/refresh`, {
-      method: "POST",
-      credentials: "include",
-    });
-    if (refreshed.ok) {
-      return apiFetch(endpoint, options, true);
+  if (response.status === 401) {
+    if (!isRetry) {
+      const refreshed = await fetch(`${API_URL}/auth/refresh`, {
+        method: "POST",
+        credentials: "include",
+      });
+      if (refreshed.ok) {
+        return apiFetch(endpoint, options, true);
+      }
     }
     localStorage.removeItem("user");
     window.location.href = "/";

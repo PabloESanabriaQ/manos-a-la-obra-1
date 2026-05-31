@@ -57,7 +57,8 @@
     "subtitle": "Volviendo a la pagina de inicio de sesión..."
   },
   "home": {
-    "welcome": "Bienvenido {{name}}! Es un placer tenerte aquí!"
+    "greeting": "Bienvenido {{name}}",
+    "subtitle": "Es un placer tenerte aquí!"
   },
   "error": {
     "title": "Error 404 - Página no encontrada",

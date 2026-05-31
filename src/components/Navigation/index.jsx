@@ -16,7 +16,6 @@ const LINKS_DEFAULT = [
 
 const LINKS_ADMIN_USERS = [
   { to: "home", labelKey: "nav.home" },
-  { to: "admin/users", labelKey: "nav.adminUsers" },
   { to: "profile", labelKey: "nav.profile" },
   { to: "settings", labelKey: "nav.settings" },
 ];

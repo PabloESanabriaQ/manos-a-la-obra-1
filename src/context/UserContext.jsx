@@ -57,7 +57,7 @@ export function UserProvider({ children }) {
   const isAdminProjects = () => role === "admin_projects";
   const isMember = () => role === "member";
 
-  const homeRoute = () => (isAdminUsers() ? "/admin/users" : "/my-projects");
+  const homeRoute = () => "/home";
 
   return (
     <UserContext.Provider

@@ -6,8 +6,8 @@ import updateUser from "../../services/updateUser";
 import deactivateUser from "../../services/deactivateUser";
 import useAllProjects from "../../services/getAllProjects";
 import updateProjectMembers from "../../services/updateProjectMembers";
-import ErrorToast from "../../components/ErrorToast";
-import SuccessToast from "../../components/SuccessToast";
+import ErrorToast from "../ErrorToast";
+import SuccessToast from "../SuccessToast";
 import styles from "./styles.module.scss";
 
 const ROLES = ["admin_users", "admin_projects", "member"];
@@ -23,19 +23,17 @@ const EMPTY_USER_FORM = {
 };
 const EMPTY_EDIT_FORM = { username: "", email: "", firstName: "", lastName: "" };
 
-export default function AdminUsersView() {
+export default function AdminUsersPanel() {
   const { t } = useTranslation();
   const [tab, setTab] = useState("users");
 
-  // --- Users tab state ---
   const [users, setUsers] = useState([]);
   const [usersLoading, setUsersLoading] = useState(true);
-  const [editingUser, setEditingUser] = useState(null); // null = closed, object = editing
+  const [editingUser, setEditingUser] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [createForm, setCreateForm] = useState(EMPTY_USER_FORM);
   const [editForm, setEditForm] = useState(EMPTY_EDIT_FORM);
 
-  // --- Projects tab state ---
   const { data: projects } = useAllProjects();
   const [selectedProject, setSelectedProject] = useState(null);
   const [newMember, setNewMember] = useState({ userId: "", role: "member" });
@@ -59,7 +57,6 @@ export default function AdminUsersView() {
     loadUsers();
   }, [loadUsers]);
 
-  // --- User actions ---
   async function handleCreate(e) {
     e.preventDefault();
     try {
@@ -113,7 +110,6 @@ export default function AdminUsersView() {
     }
   }
 
-  // --- Project members actions ---
   async function handleAddMember(e) {
     e.preventDefault();
     if (!newMember.userId) return;
@@ -148,7 +144,7 @@ export default function AdminUsersView() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{t("admin.title")}</h1>
+      <h2 className={styles.title}>{t("admin.title")}</h2>
 
       <div className={styles.tabs}>
         <button
@@ -165,11 +161,10 @@ export default function AdminUsersView() {
         </button>
       </div>
 
-      {/* ── USERS TAB ── */}
       {tab === "users" && (
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <h2>{t("admin.usersTab")}</h2>
+            <h3>{t("admin.usersTab")}</h3>
             <button
               className={styles.btnPrimary}
               onClick={() => {
@@ -183,7 +178,7 @@ export default function AdminUsersView() {
 
           {showCreateForm && (
             <form className={styles.form} onSubmit={handleCreate}>
-              <h3>{t("admin.createUser")}</h3>
+              <h4>{t("admin.createUser")}</h4>
               <input
                 className={styles.input}
                 placeholder={t("admin.username")}
@@ -254,9 +249,9 @@ export default function AdminUsersView() {
 
           {editingUser && (
             <form className={styles.form} onSubmit={handleEdit}>
-              <h3>
+              <h4>
                 {t("admin.editUser")}: {editingUser.username}
-              </h3>
+              </h4>
               <input
                 className={styles.input}
                 placeholder={t("admin.username")}
@@ -344,10 +339,9 @@ export default function AdminUsersView() {
         </section>
       )}
 
-      {/* ── PROJECTS TAB ── */}
       {tab === "projects" && (
         <section className={styles.section}>
-          <h2>{t("admin.projectsTab")}</h2>
+          <h3>{t("admin.projectsTab")}</h3>
           <select
             className={styles.select}
             value={selectedProject?._id ?? ""}
@@ -365,9 +359,9 @@ export default function AdminUsersView() {
 
           {selectedProject && (
             <>
-              <h3 className={styles.subtitle}>
+              <h4 className={styles.subtitle}>
                 {t("admin.members")}: {selectedProject.name}
-              </h3>
+              </h4>
               <table className={styles.table}>
                 <thead>
                   <tr>
