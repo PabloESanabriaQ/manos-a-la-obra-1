@@ -99,7 +99,13 @@
     "cancel": "Cancel",
     "edit": "Edit",
     "delete": "Delete",
-    "confirmDelete": "Delete {{name}}?"
+    "confirmDelete": "Delete {{name}}?",
+    "todo": "To do",
+    "running": "In progress",
+    "statusAll": "All",
+    "assignedTo": "Assigned to",
+    "addAssignee": "Assign member",
+    "noAssignees": "Unassigned"
   },
   "profile": {
     "title": "My Profile",

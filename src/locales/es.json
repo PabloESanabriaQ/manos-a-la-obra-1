@@ -99,7 +99,13 @@
     "cancel": "Cancelar",
     "edit": "Editar",
     "delete": "Eliminar",
-    "confirmDelete": "Eliminar {{name}}?"
+    "confirmDelete": "Eliminar {{name}}?",
+    "todo": "Por hacer",
+    "running": "En curso",
+    "statusAll": "Todas",
+    "assignedTo": "Asignado a",
+    "addAssignee": "Asignar miembro",
+    "noAssignees": "Sin asignar"
   },
   "profile": {
     "title": "Mi Perfil",

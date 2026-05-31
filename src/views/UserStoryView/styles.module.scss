@@ -109,6 +109,68 @@
   }
 }
 
+.assigneeSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.assigneeLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.assigneeEmpty {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  opacity: 0.6;
+  margin: 0;
+}
+
+.assigneeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.assigneeTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  background-color: var(--color-primary-faded);
+  border-radius: 99px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.assigneeRemove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--color-text);
+  padding: 0;
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.addAssigneeRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  select {
+    flex: 1;
+  }
+}
+
 .btnAdd {
   padding: 0.6rem 1.5rem;
   background: none;

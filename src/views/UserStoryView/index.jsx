@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useUSById from "../../services/getUSById";
 import useTasksByUSId from "../../services/getTasksByUSId";
+import useProjectById from "../../services/getProjectById";
 import updateStory from "../../services/updateStory";
 import createTask from "../../services/createTask";
 import updateTask from "../../services/updateTask";
@@ -14,11 +15,12 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
 
 const EMPTY_TASK_FORM = { name: "", description: "" };
+const EMPTY_STORY_FORM = { name: "", description: "", points: "", status: "todo", assignedTo: [] };
 
 export default function UserStoryView() {
   const { idHistoriaDeUsuario } = useParams();
   const { t } = useTranslation();
-  const { canDo } = useUser();
+  const { canDo, isAdminProjects } = useUser();
 
   const { data: fetchedStory } = useUSById(idHistoriaDeUsuario);
   const { data: fetchedTasks, loading, error } = useTasksByUSId(idHistoriaDeUsuario);
@@ -28,12 +30,16 @@ export default function UserStoryView() {
   const display = tasks ?? fetchedTasks;
   const currentStory = story ?? fetchedStory;
 
+  const projectId = isAdminProjects() ? currentStory?.epic?.project : null;
+  const { data: project } = useProjectById({ projectId });
+
   const [showCreate, setShowCreate] = useState(false);
   const [createForm, setCreateForm] = useState(EMPTY_TASK_FORM);
   const [editingTask, setEditingTask] = useState(null);
   const [editTaskForm, setEditTaskForm] = useState(EMPTY_TASK_FORM);
   const [showEditStory, setShowEditStory] = useState(false);
-  const [editStoryForm, setEditStoryForm] = useState({ name: "", description: "", points: "" });
+  const [editStoryForm, setEditStoryForm] = useState(EMPTY_STORY_FORM);
+  const [memberToAdd, setMemberToAdd] = useState("");
   const [err, setErr] = useState("");
 
   function openEditTask(task) {
@@ -46,8 +52,29 @@ export default function UserStoryView() {
       name: currentStory?.name ?? "",
       description: currentStory?.description ?? "",
       points: currentStory?.points ?? "",
+      status: currentStory?.status ?? "todo",
+      assignedTo: currentStory?.assignedTo ?? [],
     });
+    setMemberToAdd("");
     setShowEditStory(true);
+  }
+
+  function removeAssignee(userId) {
+    setEditStoryForm({
+      ...editStoryForm,
+      assignedTo: editStoryForm.assignedTo.filter((u) => u._id !== userId),
+    });
+  }
+
+  function addAssignee() {
+    if (!memberToAdd) return;
+    const member = project?.members?.find((m) => m.user._id === memberToAdd);
+    if (!member) return;
+    setEditStoryForm({
+      ...editStoryForm,
+      assignedTo: [...editStoryForm.assignedTo, member.user],
+    });
+    setMemberToAdd("");
   }
 
   async function handleCreateTask(e) {
@@ -88,6 +115,7 @@ export default function UserStoryView() {
     try {
       const updated = await updateStory(idHistoriaDeUsuario, {
         ...editStoryForm,
+        assignedTo: editStoryForm.assignedTo.map((u) => u._id),
         points: editStoryForm.points || undefined,
       });
       setStory(updated);
@@ -105,6 +133,9 @@ export default function UserStoryView() {
       </div>
     );
 
+  const assignedIds = new Set(editStoryForm.assignedTo.map((u) => u._id));
+  const nonAssignedMembers = (project?.members ?? []).filter((m) => !assignedIds.has(m.user._id));
+
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
@@ -118,6 +149,12 @@ export default function UserStoryView() {
             {currentStory?.points != null && (
               <p className={styles.subtitle}>
                 {t("crud.points")}: {currentStory.points}
+              </p>
+            )}
+            {currentStory?.assignedTo?.length > 0 && (
+              <p className={styles.subtitle}>
+                {t("crud.assignedTo")}:{" "}
+                {currentStory.assignedTo.map((u) => u.name?.first || u.username).join(", ")}
               </p>
             )}
           </div>
@@ -156,6 +193,65 @@ export default function UserStoryView() {
               value={editStoryForm.points}
               onChange={(e) => setEditStoryForm({ ...editStoryForm, points: e.target.value })}
             />
+            <select
+              className={styles.input}
+              value={editStoryForm.status}
+              aria-label={t("crud.status")}
+              onChange={(e) => setEditStoryForm({ ...editStoryForm, status: e.target.value })}
+            >
+              <option value="todo">{t("crud.todo")}</option>
+              <option value="running">{t("crud.running")}</option>
+              <option value="done">{t("crud.done")}</option>
+            </select>
+
+            {/* Asignados — solo PM */}
+            {isAdminProjects() && (
+              <div className={styles.assigneeSection}>
+                <p className={styles.assigneeLabel}>{t("crud.assignedTo")}</p>
+                {editStoryForm.assignedTo.length === 0 && (
+                  <p className={styles.assigneeEmpty}>{t("crud.noAssignees")}</p>
+                )}
+                <div className={styles.assigneeList}>
+                  {editStoryForm.assignedTo.map((u) => (
+                    <span key={u._id} className={styles.assigneeTag}>
+                      {u.name?.first || u.username}
+                      <button
+                        type="button"
+                        className={styles.assigneeRemove}
+                        onClick={() => removeAssignee(u._id)}
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+                {nonAssignedMembers.length > 0 && (
+                  <div className={styles.addAssigneeRow}>
+                    <select
+                      className={styles.input}
+                      value={memberToAdd}
+                      onChange={(e) => setMemberToAdd(e.target.value)}
+                    >
+                      <option value="">{t("crud.addAssignee")}...</option>
+                      {nonAssignedMembers.map((m) => (
+                        <option key={m.user._id} value={m.user._id}>
+                          {m.user.name?.first || m.user.username}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      className={styles.btnSecondary}
+                      onClick={addAssignee}
+                      disabled={!memberToAdd}
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className={styles.formActions}>
               <button className={styles.btnPrimary} type="submit">
                 {t("crud.save")}

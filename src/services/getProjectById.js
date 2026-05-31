@@ -7,6 +7,11 @@ export default function useProjectById({ projectId }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!projectId) {
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
     apiFetch(`/projects/${projectId}`)
       .then((res) => setData(res.data))
       .catch((err) => setError(err.message))
