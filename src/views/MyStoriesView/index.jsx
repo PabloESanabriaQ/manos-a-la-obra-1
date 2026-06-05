@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useAllStories from "../../services/getAllStories";
 import { useUser } from "../../context/UserContext";
@@ -22,7 +22,12 @@ function MemberStoriesView({ userId }) {
 function PMStoriesView() {
   const { t } = useTranslation();
   const [status, setStatus] = useState(null);
-  const { data, loading, error } = useAllStories({ status });
+  const { data, loading, error } = useAllStories();
+
+  const filtered = useMemo(
+    () => (status ? data?.filter((s) => s.status === status) : data),
+    [data, status]
+  );
 
   if (loading) return <LoadingSpinner />;
   if (error) return <div className={styles.error}>{error}</div>;
@@ -46,7 +51,7 @@ function PMStoriesView() {
           </button>
         ))}
       </div>
-      <ListContainerComponent data={data} title={t("common.myStories")} path="userStory" />
+      <ListContainerComponent data={filtered} title={t("common.myStories")} path="userStory" />
     </>
   );
 }
