@@ -6,6 +6,7 @@ import updateUser from "../../services/updateUser";
 import deactivateUser from "../../services/deactivateUser";
 import useAllProjects from "../../services/getAllProjects";
 import updateProjectMembers from "../../services/updateProjectMembers";
+import createProject from "../../services/createProject";
 import ErrorToast from "../ErrorToast";
 import SuccessToast from "../SuccessToast";
 import styles from "./styles.module.scss";
@@ -22,6 +23,7 @@ const EMPTY_USER_FORM = {
   lastName: "",
 };
 const EMPTY_EDIT_FORM = { username: "", email: "", firstName: "", lastName: "" };
+const EMPTY_PROJECT_FORM = { name: "", description: "", adminId: "" };
 
 export default function AdminUsersPanel() {
   const { t } = useTranslation();
@@ -34,9 +36,11 @@ export default function AdminUsersPanel() {
   const [createForm, setCreateForm] = useState(EMPTY_USER_FORM);
   const [editForm, setEditForm] = useState(EMPTY_EDIT_FORM);
 
-  const { data: projects } = useAllProjects();
+  const { data: projects, refetch: refetchProjects } = useAllProjects();
   const [selectedProject, setSelectedProject] = useState(null);
   const [newMember, setNewMember] = useState({ userId: "", role: "member" });
+  const [showCreateProjectForm, setShowCreateProjectForm] = useState(false);
+  const [projectForm, setProjectForm] = useState(EMPTY_PROJECT_FORM);
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -105,6 +109,23 @@ export default function AdminUsersPanel() {
       await deactivateUser(user._id);
       setSuccess(t("admin.userDeactivated"));
       loadUsers();
+    } catch (e) {
+      setError(e.message);
+    }
+  }
+
+  async function handleCreateProject(e) {
+    e.preventDefault();
+    try {
+      await createProject({
+        name: projectForm.name,
+        description: projectForm.description,
+        adminId: projectForm.adminId,
+      });
+      setProjectForm(EMPTY_PROJECT_FORM);
+      setShowCreateProjectForm(false);
+      setSuccess(t("admin.projectCreated"));
+      refetchProjects();
     } catch (e) {
       setError(e.message);
     }
@@ -341,7 +362,71 @@ export default function AdminUsersPanel() {
 
       {tab === "projects" && (
         <section className={styles.section}>
-          <h3>{t("admin.projectsTab")}</h3>
+          <div className={styles.sectionHeader}>
+            <h3>{t("admin.projectsTab")}</h3>
+            <button
+              className={styles.btnPrimary}
+              onClick={() => {
+                setShowCreateProjectForm(true);
+                setSelectedProject(null);
+              }}
+            >
+              + {t("admin.createProject")}
+            </button>
+          </div>
+
+          {showCreateProjectForm && (
+            <form className={styles.form} onSubmit={handleCreateProject}>
+              <h4>{t("admin.createProject")}</h4>
+              <input
+                className={styles.input}
+                placeholder={t("admin.projectName")}
+                aria-label={t("admin.projectName")}
+                value={projectForm.name}
+                onChange={(e) => setProjectForm({ ...projectForm, name: e.target.value })}
+                required
+              />
+              <input
+                className={styles.input}
+                placeholder={t("admin.projectDescription")}
+                aria-label={t("admin.projectDescription")}
+                value={projectForm.description}
+                onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
+              />
+              <select
+                className={styles.select}
+                aria-label={t("admin.projectAdmin")}
+                value={projectForm.adminId}
+                onChange={(e) => setProjectForm({ ...projectForm, adminId: e.target.value })}
+                required
+              >
+                <option value="">{t("admin.selectAdmin")}</option>
+                {users
+                  .filter((u) => u.active)
+                  .map((u) => (
+                    <option key={u._id} value={u._id}>
+                      {u.username} ({t(`admin.roles.${u.role}`)})
+                    </option>
+                  ))}
+              </select>
+              <div className={styles.formActions}>
+                <button className={styles.btnPrimary} type="submit">
+                  {t("admin.save")}
+                </button>
+                <button
+                  className={styles.btnSecondary}
+                  type="button"
+                  onClick={() => {
+                    setShowCreateProjectForm(false);
+                    setProjectForm(EMPTY_PROJECT_FORM);
+                  }}
+                >
+                  {t("admin.cancel")}
+                </button>
+              </div>
+            </form>
+          )}
+
           <select
             className={styles.select}
             value={selectedProject?._id ?? ""}

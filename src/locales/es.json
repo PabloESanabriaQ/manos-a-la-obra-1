@@ -39,6 +39,12 @@
     "memberAdded": "Miembro agregado",
     "memberRemoved": "Miembro eliminado",
     "confirmDeactivate": "Desactivar al usuario {{name}}?",
+    "createProject": "Crear proyecto",
+    "projectName": "Nombre del proyecto",
+    "projectDescription": "Descripción",
+    "projectAdmin": "Admin del proyecto",
+    "selectAdmin": "Seleccionar admin...",
+    "projectCreated": "Proyecto creado correctamente",
     "roles": {
       "admin_users": "Admin usuarios",
       "admin_projects": "Admin proyectos",
