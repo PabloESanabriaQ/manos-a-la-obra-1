@@ -9,6 +9,7 @@ import updateStory from "../../services/updateStory";
 import deleteStory from "../../services/deleteStory";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import ErrorToast from "../../components/ErrorToast";
+import translateError from "../../api/translateError";
 import { useUser } from "../../context/UserContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
@@ -66,7 +67,7 @@ export default function EpicView() {
       setCreateForm(EMPTY_STORY_FORM);
       setShowCreate(false);
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 
@@ -80,7 +81,7 @@ export default function EpicView() {
       setStories((display ?? []).map((s) => (s._id === updated._id ? updated : s)));
       setEditingStory(null);
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 
@@ -90,7 +91,7 @@ export default function EpicView() {
       await deleteStory(id);
       setStories((display ?? []).filter((s) => s._id !== id));
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 
@@ -101,7 +102,7 @@ export default function EpicView() {
       setEpic(updated);
       setShowEditEpic(false);
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 

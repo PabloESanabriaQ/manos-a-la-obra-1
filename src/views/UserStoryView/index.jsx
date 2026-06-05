@@ -10,6 +10,7 @@ import updateTask from "../../services/updateTask";
 import deleteTask from "../../services/deleteTask";
 import ListContainerComponent from "../../components/ListContainerComponent";
 import ErrorToast from "../../components/ErrorToast";
+import translateError from "../../api/translateError";
 import { useUser } from "../../context/UserContext";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import styles from "./styles.module.scss";
@@ -85,7 +86,7 @@ export default function UserStoryView() {
       setCreateForm(EMPTY_TASK_FORM);
       setShowCreate(false);
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 
@@ -96,7 +97,7 @@ export default function UserStoryView() {
       setTasks((display ?? []).map((t) => (t._id === updated._id ? updated : t)));
       setEditingTask(null);
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 
@@ -106,7 +107,7 @@ export default function UserStoryView() {
       await deleteTask(id);
       setTasks((display ?? []).filter((t) => t._id !== id));
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 
@@ -121,7 +122,7 @@ export default function UserStoryView() {
       setStory(updated);
       setShowEditStory(false);
     } catch (e) {
-      setErr(e.message);
+      setErr(translateError(t, e));
     }
   }
 

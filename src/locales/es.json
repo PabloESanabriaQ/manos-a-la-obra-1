@@ -123,6 +123,9 @@
     "projects": "Mis Proyectos",
     "noProjects": "No formas parte de ningun proyecto"
   },
+  "errors": {
+    "INVALID_POINTS": "Los puntos deben ser uno de: {{allowed}}"
+  },
   "common": {
     "loading": "Pensando...",
     "emptyList": "Nada que ver aquí... Agrega un elemento para comenzar!",
