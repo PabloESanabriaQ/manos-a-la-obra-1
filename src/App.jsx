@@ -1,44 +1,36 @@
-import { Outlet } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import LoginView from './views/LoginView';
-import { useState, useEffect } from 'react';
+import { Outlet } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import LoginView from "./views/LoginView";
+import LogoutView from "./views/LogoutView";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useUser } from "./context/UserContext";
 
 function App() {
-
-  const [user, setUser] = useState("");
+  const { user } = useUser();
   const [loggingOut, setLoggingOut] = useState(false);
-
-  const token = localStorage.getItem('token');
+  const { i18n } = useTranslation();
 
   useEffect(() => {
-    if (token && !user) {
-      setUser(JSON.parse(localStorage.getItem('user')));
-    }
-  }, [user]);
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
-  if(loggingOut){
+  if (loggingOut) return <LogoutView />;
+
+  if (!user) {
     return (
-      <>
-      <h3>Muchas gracias por venir, esperamos que vuelvas pronto!</h3>
-      <h4>Volviendo a la página de inicio de sesión...</h4>
-      </>
+      <main>
+        <LoginView />
+      </main>
     );
   }
 
-  if (!token) {
-    return (
-      <main>
-      <LoginView user={user} setUser={setUser}/>
-      </main>
-    )
-  }
-  
   return (
-  <main>
-  <Navigation setUser={setUser} setLoggingOut={setLoggingOut}/>
-  <Outlet />
-  </main>
-  )
+    <main>
+      <Navigation setLoggingOut={setLoggingOut} />
+      <Outlet />
+    </main>
+  );
 }
 
-export default App
+export default App;

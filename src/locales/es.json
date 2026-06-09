@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "myStories": "Mis Historias",
+    "settings": "Configuración",
+    "myProjects": "Mis Proyectos",
+    "adminUsers": "Administración",
+    "profile": "Mi Perfil",
+    "logOut": "Cerrar Sesión",
+    "menu": "Menu de navegación"
+  },
+  "admin": {
+    "title": "Administración de usuarios",
+    "usersTab": "Usuarios",
+    "projectsTab": "Proyectos",
+    "createUser": "Crear usuario",
+    "editUser": "Editar usuario",
+    "username": "Usuario",
+    "email": "Email",
+    "password": "Contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "role": "Rol",
+    "status": "Estado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "deactivate": "Desactivar",
+    "members": "Miembros de",
+    "addMember": "Agregar miembro",
+    "remove": "Quitar",
+    "selectUser": "Seleccionar usuario...",
+    "selectProject": "Seleccionar proyecto...",
+    "userCreated": "Usuario creado correctamente",
+    "userUpdated": "Usuario actualizado correctamente",
+    "userDeactivated": "Usuario desactivado",
+    "memberAdded": "Miembro agregado",
+    "memberRemoved": "Miembro eliminado",
+    "confirmDeactivate": "Desactivar al usuario {{name}}?",
+    "createProject": "Crear proyecto",
+    "projectName": "Nombre del proyecto",
+    "projectDescription": "Descripción",
+    "projectAdmin": "Admin del proyecto",
+    "selectAdmin": "Seleccionar admin...",
+    "projectCreated": "Proyecto creado correctamente",
+    "roles": {
+      "admin_users": "Admin usuarios",
+      "admin_projects": "Admin proyectos",
+      "member": "Miembro"
+    }
+  },
+  "login": {
+    "welcome": "Bienvenido",
+    "usernamePlaceholder": "usuario",
+    "submit": "Entrar",
+    "errorEmpty": "Por favor completa los campos de usuario y contraseña",
+    "errorInvalid": "Usuario o contraseña incorrectos, por favor intenta de nuevo"
+  },
+  "logout": {
+    "title": "Muchas gracias por venir",
+    "subtitle": "Volviendo a la pagina de inicio de sesión..."
+  },
+  "home": {
+    "greeting": "Bienvenido {{name}}",
+    "subtitle": "Es un placer tenerte aquí!"
+  },
+  "error": {
+    "title": "Error 404 - Página no encontrada",
+    "redirecting": "Redirigiendo a la página principal..."
+  },
+  "settings": {
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "language": "Idioma",
+    "spanish": "Español",
+    "english": "Inglés",
+    "changePassword": "Cambiar contraseña",
+    "currentPassword": "contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "save": "Guardar",
+    "passwordSuccess": "Contraseña actualizada correctamente",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordEmpty": "Completá todos los campos"
+  },
+  "crud": {
+    "editProject": "Editar Proyecto",
+    "editEpic": "Editar Epica",
+    "newEpic": "Nueva Epica",
+    "editStory": "Editar Historia",
+    "newStory": "Nueva Historia",
+    "editTask": "Editar Tarea",
+    "newTask": "Nueva Tarea",
+    "name": "Nombre",
+    "description": "Descripción",
+    "icon": "Icono",
+    "points": "Puntos",
+    "status": "Estado",
+    "done": "Hecho",
+    "pending": "Pendiente",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirmDelete": "Eliminar {{name}}?",
+    "todo": "Por hacer",
+    "running": "En curso",
+    "statusAll": "Todas",
+    "assignedTo": "Asignado a",
+    "addAssignee": "Asignar miembro",
+    "noAssignees": "Sin asignar"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "username": "Usuario",
+    "email": "Email",
+    "role": "Rol",
+    "projects": "Mis Proyectos",
+    "noProjects": "No formas parte de ningun proyecto"
+  },
+  "errors": {
+    "INVALID_POINTS": "Los puntos deben ser uno de: {{allowed}}"
+  },
+  "common": {
+    "loading": "Pensando...",
+    "emptyList": "Nada que ver aquí... Agrega un elemento para comenzar!",
+    "projects": "Proyectos",
+    "epics": "Épicas",
+    "userStories": "Historias de Usuario",
+    "tasks": "Tareas",
+    "myStories": "Mis Historias",
+    "task": "Tarea",
+    "add": "Agregar",
+    "language": "Idioma"
+  }
+}

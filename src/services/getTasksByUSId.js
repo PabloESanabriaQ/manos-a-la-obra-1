@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getTasksByUSId(userStoryId) {
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  const [tasks, setTasks] = useState(null);
+export default function useTasksByUSId(userStoryId) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/stories/${userStoryId}/tasks`) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setTasks(data); 
-      });
-	}, []);
+    apiFetch(`/stories/${userStoryId}/tasks`)
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [userStoryId]);
 
-	return tasks;
-};
+  return { data, loading, error };
+}

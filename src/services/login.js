@@ -1,19 +1,15 @@
-export default function login(user, password) {
+import { apiFetch } from "../api/client";
 
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  return fetch(`${API_URL}/login`, {
+export default async function login(username, password) {
+  try {
+    await apiFetch("/login", {
       method: "POST",
-      body: JSON.stringify({ username: user, password: password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      return data
-    })
-    .catch((error) => {
-      return { success: response.success, error: response.error };
+      body: JSON.stringify({ username, password }),
     });
-};
+    const { data: user } = await apiFetch("/users/me");
+    localStorage.setItem("user", JSON.stringify(user));
+    return { success: true, user };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}

@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getAllProjects(){
+export default function useAllProjects() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL;
-  
-  const [projects, setProjects] = useState(null);
+  const load = useCallback(() => {
+    setLoading(true);
+    setError(null);
+    apiFetch("/projects")
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
   useEffect(() => {
-		fetch(`${API_URL}/projects`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth": `${localStorage.getItem("token")}`,
-      },
-    } ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setProjects(data); 
-      });
-	}, []);
+    load();
+  }, [load]);
 
-	return projects;
-};
+  return { data, loading, error, refetch: load };
+}

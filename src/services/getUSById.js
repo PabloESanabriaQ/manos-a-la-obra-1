@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getUSById(){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  const [userStories, setUserStories] = useState(null);
+export default function useUSById(userStoryId) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/projects/${projectId}/epics/${epicId}/stories/${userStoryId}`) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setUserStories(data); 
-      });
-	}, []);
+    apiFetch(`/stories/${userStoryId}`)
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [userStoryId]);
 
-	return userStories;
-};
+  return { data, loading, error };
+}

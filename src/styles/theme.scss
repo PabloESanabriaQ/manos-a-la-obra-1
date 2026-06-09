@@ -1,0 +1,61 @@
+:root {
+  --color-bg: #f0f8ff;
+  --color-brand: #385752;
+  --color-primary: #385752;
+  --color-accent: #f9bc60;
+  --color-text: #1a1a1a;
+  --color-surface: #ffffff;
+  --color-on-brand: #f0f8ff;
+  --color-nav-overlay: rgba(220, 235, 235, 0.9);
+  --color-error-bg: #f8d7da;
+  --color-error: #b8454d;
+  --color-border: #000000;
+  --color-primary-faded: rgba(56, 87, 82, 0.3);
+}
+
+[data-theme="dark"] {
+  --color-bg: #0d1e1c;
+  --color-brand: #385752;
+  --color-primary: #7bbdb4;
+  --color-accent: #f9bc60;
+  --color-text: #e8f4f2;
+  --color-surface: #1a2f2c;
+  --color-on-brand: #f0f8ff;
+  --color-nav-overlay: rgba(13, 30, 28, 0.97);
+  --color-error-bg: #3d1a1d;
+  --color-error: #e07070;
+  --color-border: rgba(123, 189, 180, 0.7);
+  --color-primary-faded: rgba(123, 189, 180, 0.3);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

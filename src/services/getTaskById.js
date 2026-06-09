@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getTaskById(taskId) {
-
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  const [task, setTask] = useState(null);
+export default function useTaskById(taskId) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/tasks/${taskId}`) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setTask(data); 
-      });
-	}, []);
+    apiFetch(`/tasks/${taskId}`)
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [taskId]);
 
-	return task;
-};
+  return { data, loading, error };
+}

@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
+import { apiFetch } from "../api/client";
 
-export default function getAllTasks(){
-
-  const API_URL = import.meta.env.VITE_API_URL;
-  
-  const [tasks, setTasks] = useState(null);
+export default function useAllTasks() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-		fetch(`${API_URL}/tasks`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth": `${localStorage.getItem("token")}`,
-      },
-    } ) 
-      .then((response) => response.json()) 
-      .then((data) => {
-        setTasks(data); 
-      });
-	}, []);
+    apiFetch("/tasks")
+      .then((res) => setData(res.data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
 
-	return tasks;
-};
+  return { data, loading, error };
+}

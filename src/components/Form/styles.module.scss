@@ -1,5 +1,7 @@
 .form {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   max-width: 512px;
   gap: 4px;
 }

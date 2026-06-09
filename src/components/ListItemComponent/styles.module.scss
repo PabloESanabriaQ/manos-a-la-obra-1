@@ -6,9 +6,10 @@
   gap: 10px;
   padding: 10px;
   width: 60%;
+  max-width: 500px;
 
   &:hover {
-    background-color: rgba(220, 235, 235, 0.9);
+    background-color: var(--color-nav-overlay);
     border-radius: 5px;
     animation: grow 0.2s;
   }
@@ -24,7 +25,6 @@
   border-radius: 5px;
 }
 .link {
-  color: #385752;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -32,8 +32,8 @@
   padding: 0 10px;
   align-items: center;
   text-decoration: none;
-  color: black;
-  border-bottom: 1px solid #385752;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-primary);
 }
 
 .text {
@@ -47,4 +47,35 @@
 
 .description {
   text-transform: none;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+.btnAction {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--color-nav-overlay);
+  }
+}
+
+.btnDelete:hover {
+  background-color: rgba(224, 82, 82, 0.15);
 }

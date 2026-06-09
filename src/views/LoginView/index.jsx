@@ -1,76 +1,72 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import login from "../../services/login";
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
 import ErrorToast from "../../components/ErrorToast";
+import { useUser } from "../../context/UserContext";
 
-export default function LoginView({ user, setUser }){
-
+export default function LoginView() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+  const { t } = useTranslation();
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(error){
-      const timeout = setTimeout(() => {
-        setError("");
-      }, 3000);
-      return () => clearTimeout(timeout);
-    }
-  }, [error]);
-
-  function handleUser(e){
-    setUser(e.target.value);
-  }
-    
-
-  function handlePassword(e){
-    setPassword(e.target.value);
-  }    
-
-  function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    if(!user || !password){
-      setError("Please fill out the user and password fields");
+    if (!username || !password) {
+      setError(t("login.errorEmpty"));
       return;
     }
     setLoading(true);
-    login(user, password)
-      .then((response) => {
-        if (response.success) {
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          setUser(response.data.user);
-          navigate("/");
-        } else {
-          setUser("");
-          setPassword("");
-          setError("User or password incorrect, please try again");
-        }
-      })
-      .catch((error) => {
-        setError("There was an error, please try again soon...");
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const result = await login(username, password);
+    if (result.success) {
+      setUser(result.user);
+      navigate("/home");
+    } else {
+      setUsername("");
+      setPassword("");
+      setError(result.error || t("login.errorInvalid"));
+    }
+    setLoading(false);
   }
 
   return (
     <section className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1 className={styles.h1}>Welcome<span className={styles.span}>.</span></h1>
-        <input placeholder="username" className={styles.input} type="text" autoFocus value={user} onChange={(e) => handleUser(e)}/>
-        <input placeholder="************" className={styles.input} type="password" value={password}  onChange={(e) => handlePassword(e)} />
-        <button className={`${loading ? styles.loading: styles.submit}`} type="submit" disabled={loading}>
-          {loading ? "..." : "Submit"}
+        <h1 className={styles.h1}>
+          {t("login.welcome")}
+          <span className={styles.span}>.</span>
+        </h1>
+        <input
+          placeholder={t("login.usernamePlaceholder")}
+          aria-label={t("login.usernamePlaceholder")}
+          className={styles.input}
+          type="text"
+          autoFocus
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          placeholder="************"
+          aria-label={t("admin.password")}
+          className={styles.input}
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button
+          className={`${loading ? styles.loading : styles.submit}`}
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "..." : t("login.submit")}
         </button>
       </form>
-      {error && <ErrorToast toast={styles.toast} error={error} />}
+      {error && <ErrorToast message={error} onClose={() => setError("")} />}
     </section>
-  )
+  );
 }

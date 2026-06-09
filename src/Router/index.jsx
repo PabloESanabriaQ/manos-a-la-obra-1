@@ -10,56 +10,70 @@ import ProjectView from "../views/ProjectView";
 import UserStoryView from "../views/UserStoryView";
 import LoginView from "../views/LoginView";
 import TaskView from "../views/TaskView";
+import ProfileView from "../views/ProfileView";
+import ProtectedRoute from "../components/ProtectedRoute";
 
-export const router = createBrowserRouter(
-  [
-    {      
-      path: "/",
-      element: <App />,
-      errorElement: <ErrorView />,
-      children: [
-        {
-          path: "login",
-          element: <LoginView />,
-        },
-        {
-          path: "home",
-          element: <HomeView />,
-        },
-        {
-          path: "",
-          element: <HomeView />,
-        },
-        {
-          path: "my-stories",
-          element: <MyStoriesView />
-        },
-        {
-          path: "settings",
-          element: <SettingsView />
-        },
-        {
-          path: "my-projects",
-          element: <MyProjectsView />
-        }, 
-        { 
-          path: "project/:idProyecto", 
-          element: <ProjectView />
-        },
+const PROJECT_ROLES = ["admin_projects", "member"];
 
-        {
-          path: "epic/:idEpica", 
-          element: <EpicView />,
-        },
-        {
-          path: "userStory/:idHistoriaDeUsuario", 
-          element: <UserStoryView />,
-        },
-        {
-          path: "task/:Tarea", 
-          element: <TaskView />,
-        }
-      ]
-    }
-  ]
-);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorView />,
+    children: [
+      { path: "login", element: <LoginView /> },
+      { path: "home", element: <HomeView /> },
+      { path: "", element: <HomeView /> },
+      { path: "settings", element: <SettingsView /> },
+      { path: "profile", element: <ProfileView /> },
+      {
+        path: "my-projects",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <MyProjectsView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "my-stories",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <MyStoriesView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "project/:idProyecto",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <ProjectView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "epic/:idEpica",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <EpicView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "userStory/:idHistoriaDeUsuario",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <UserStoryView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "task/:Tarea",
+        element: (
+          <ProtectedRoute allowedRoles={PROJECT_ROLES}>
+            <TaskView />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);

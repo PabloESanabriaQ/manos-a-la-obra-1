@@ -1,0 +1,141 @@
+{
+  "nav": {
+    "home": "Home",
+    "myStories": "My Stories",
+    "settings": "Settings",
+    "myProjects": "My Projects",
+    "adminUsers": "Administration",
+    "profile": "My Profile",
+    "logOut": "Log Out",
+    "menu": "Navigation menu"
+  },
+  "admin": {
+    "title": "User administration",
+    "usersTab": "Users",
+    "projectsTab": "Projects",
+    "createUser": "Create user",
+    "editUser": "Edit user",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "role": "Role",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "deactivate": "Deactivate",
+    "members": "Members of",
+    "addMember": "Add member",
+    "remove": "Remove",
+    "selectUser": "Select user...",
+    "selectProject": "Select project...",
+    "userCreated": "User created successfully",
+    "userUpdated": "User updated successfully",
+    "userDeactivated": "User deactivated",
+    "memberAdded": "Member added",
+    "memberRemoved": "Member removed",
+    "confirmDeactivate": "Deactivate user {{name}}?",
+    "createProject": "Create project",
+    "projectName": "Project name",
+    "projectDescription": "Description",
+    "projectAdmin": "Project admin",
+    "selectAdmin": "Select admin...",
+    "projectCreated": "Project created successfully",
+    "roles": {
+      "admin_users": "User admin",
+      "admin_projects": "Project admin",
+      "member": "Member"
+    }
+  },
+  "login": {
+    "welcome": "Welcome",
+    "usernamePlaceholder": "username",
+    "submit": "Submit",
+    "errorEmpty": "Please fill out the user and password fields",
+    "errorInvalid": "User or password incorrect, please try again"
+  },
+  "logout": {
+    "title": "Thank you for visiting",
+    "subtitle": "Returning to the login page..."
+  },
+  "home": {
+    "greeting": "Welcome {{name}}",
+    "subtitle": "It's a pleasure to have you here!"
+  },
+  "error": {
+    "title": "Error 404 - Page not Found",
+    "redirecting": "Redirecting to the main page..."
+  },
+  "settings": {
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "language": "Language",
+    "spanish": "Spanish",
+    "english": "English",
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "save": "Save",
+    "passwordSuccess": "Password updated successfully",
+    "passwordMismatch": "Passwords do not match",
+    "passwordEmpty": "Please fill out all fields"
+  },
+  "crud": {
+    "editProject": "Edit Project",
+    "editEpic": "Edit Epic",
+    "newEpic": "New Epic",
+    "editStory": "Edit Story",
+    "newStory": "New Story",
+    "editTask": "Edit Task",
+    "newTask": "New Task",
+    "name": "Name",
+    "description": "Description",
+    "icon": "Icon",
+    "points": "Points",
+    "status": "Status",
+    "done": "Done",
+    "pending": "Pending",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirmDelete": "Delete {{name}}?",
+    "todo": "To do",
+    "running": "In progress",
+    "statusAll": "All",
+    "assignedTo": "Assigned to",
+    "addAssignee": "Assign member",
+    "noAssignees": "Unassigned"
+  },
+  "profile": {
+    "title": "My Profile",
+    "name": "First name",
+    "lastName": "Last name",
+    "username": "Username",
+    "email": "Email",
+    "role": "Role",
+    "projects": "My Projects",
+    "noProjects": "You are not part of any project"
+  },
+  "errors": {
+    "INVALID_POINTS": "Points must be one of: {{allowed}}"
+  },
+  "common": {
+    "loading": "Thinking...",
+    "emptyList": "Nothing to see here... Add an item to start!",
+    "projects": "Projects",
+    "epics": "Epics",
+    "userStories": "User Stories",
+    "tasks": "Tasks",
+    "myStories": "My Stories",
+    "task": "Task",
+    "add": "ADD",
+    "language": "Language"
+  }
+}

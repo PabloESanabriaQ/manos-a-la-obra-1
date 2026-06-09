@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import styles from "./styles.module.scss";
 
-export default function EmptyListComponent(){
+export default function EmptyListComponent() {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.emptyList}>
-      <p>Nothing to see here... Add an item to start!</p>
+      <p>{t("common.emptyList")}</p>
     </section>
-  )
+  );
 }

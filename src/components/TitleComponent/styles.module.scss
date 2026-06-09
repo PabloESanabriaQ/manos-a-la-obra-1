@@ -1,6 +1,6 @@
 .title {
-  color: #385752;
-  text-decoration: underline 3px solid #f9bc60;
+  color: var(--color-primary);
+  text-decoration: underline 3px solid var(--color-accent);
   width: 100%;
   font-size: 2rem;
   font-weight: 800;
